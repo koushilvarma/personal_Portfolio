@@ -1,0 +1,70 @@
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Terminal, Code2, Database, Shield, Box, Server, GitBranch } from 'lucide-react';
+
+const shapes = [
+  { id: 1, type: 'square', size: 60, startX: 10, startY: 20 },
+  { id: 2, type: 'circle', size: 40, startX: 80, startY: 15 },
+  { id: 3, type: 'icon', icon: Terminal, color: 'text-blue-500', size: 50, startX: 25, startY: 70 },
+  { id: 4, type: 'icon', icon: Code2, color: 'text-green-500', size: 55, startX: 75, startY: 80 },
+  { id: 5, type: 'star', size: 45, startX: 50, startY: 40 },
+  { id: 6, type: 'icon', icon: Database, color: 'text-yellow-500', size: 45, startX: 15, startY: 50 },
+  { id: 7, type: 'icon', icon: Server, color: 'text-purple-500', size: 60, startX: 85, startY: 45 },
+  { id: 8, type: 'icon', icon: GitBranch, color: 'text-orange-500', size: 40, startX: 40, startY: 10 },
+  { id: 9, type: 'icon', icon: Shield, color: 'text-red-500', size: 50, startX: 60, startY: 90 },
+  { id: 10, type: 'icon', icon: Box, color: 'text-teal-500', size: 45, startX: 50, startY: 65 },
+];
+
+export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
+  return (
+    <div 
+      className={`absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-20'}`}
+    >
+      {shapes.map((shape) => (
+        <motion.div
+          key={shape.id}
+          className="absolute flex items-center justify-center"
+          initial={{
+            x: `${shape.startX}vw`,
+            y: `${shape.startY}vh`,
+            rotate: 0,
+          }}
+          animate={{
+            x: [`${shape.startX}vw`, `${(shape.startX + 20) % 100}vw`, `${(shape.startX - 15 + 100) % 100}vw`, `${shape.startX}vw`],
+            y: [`${shape.startY}vh`, `${(shape.startY + 30) % 100}vh`, `${(shape.startY - 20 + 100) % 100}vh`, `${shape.startY}vh`],
+            rotate: [0, 90, 180, 360],
+          }}
+          transition={{
+            duration: 20 + shape.id * 5,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          style={{ width: shape.size, height: shape.size }}
+        >
+          {shape.type === 'square' && (
+            <div className="w-full h-full bg-blue-400 border-4 border-os-border shadow-brutal-md" />
+          )}
+          {shape.type === 'circle' && (
+            <div className="w-full h-full bg-red-400 border-4 border-os-border rounded-full shadow-brutal-md" />
+          )}
+          {shape.type === 'star' && (
+            <div className="font-bold text-6xl text-orange-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)]" style={{ WebkitTextStroke: '3px #111' }}>
+              *
+            </div>
+          )}
+          {shape.type === 'icon' && shape.icon && (
+            <shape.icon 
+              strokeWidth={2.5} 
+              className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color}`} 
+            />
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
+}

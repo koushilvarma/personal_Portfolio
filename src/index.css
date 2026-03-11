@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans bg-os-bg-yellow text-os-border overflow-hidden select-none;
+  }
+
+  ::selection {
+    @apply bg-os-border text-white;
+  }
+}
+
+@layer components {
+  /* Common brutalist interactive element */
+  .brutal-btn {
+    @apply bg-os-window border-3 border-os-border shadow-brutal-sm font-bold active:translate-x-0.5 active:translate-y-0.5 active:shadow-brutal-active transition-transform duration-75;
+  }
+
+  /* Command Palette Input */
+  .brutal-input {
+    @apply bg-os-window border-3 border-os-border px-4 py-2 font-mono focus:outline-none shadow-brutal-sm;
+  }
+
+  /* Utility for scrollbars in windows */
+  .brutal-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  .brutal-scrollbar::-webkit-scrollbar-track {
+    @apply bg-os-window border-l-3 border-os-border;
+  }
+  .brutal-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-os-border border-3 border-os-window;
+  }
+}
