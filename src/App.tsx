@@ -69,6 +69,45 @@ function App() {
       <Dock />
       <CommandPalette />
 
+      <AnimatePresence>
+        {isPoweredOff && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black z-[9999] flex items-center justify-center cursor-none"
+          >
+            <div className="w-1 h-1 bg-white/20 rounded-full animate-pulse" />
+          </motion.div>
+        )}
+
+        {isSleeping && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-zinc-900 z-[9999] flex items-center justify-center cursor-none overflow-hidden"
+          >
+            <motion.div
+              animate={{
+                x: ["-40vw", "40vw", "-40vw"],
+                y: ["-40vh", "40vh", "-40vh"],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="flex flex-col items-center gap-4 text-white/40"
+            >
+              <div className="p-6 border-4 border-white/20 rounded-2xl shadow-brutal-md">
+                <Monitor size={80} strokeWidth={1.5} />
+              </div>
+              <span className="font-mono font-bold tracking-[0.5em] text-sm uppercase">KV_OS SLEEP</span>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="fixed bottom-4 left-4 z-0 pointer-events-none select-none">
         <p className="text-[10px] md:text-xs font-mono font-bold text-os-border/20 uppercase tracking-[0.2em]">
