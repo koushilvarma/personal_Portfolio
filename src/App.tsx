@@ -94,7 +94,7 @@ function App() {
                 y: ["-40vh", "40vh", "-40vh"],
               }}
               transition={{
-                duration: 5,
+                duration: 10,
                 repeat: Infinity,
                 ease: "linear"
               }}
