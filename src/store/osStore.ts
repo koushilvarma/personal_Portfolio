@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 
-export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' | 'resume' | 'paint' | 'calculator' | 'terminal' | 'music' | 'docs';
+export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' | 'resume' | 'paint' | 'calculator' | 'terminal' | 'music' | 'docs' | 'finder' | 'settings' | 'notes' | 'monitor' | 'messenger' | 'calendar' | 'game';
+
+export type ThemeId = 'yellow' | 'dark' | 'classic';
 
 interface WindowState {
   id: WindowId;
@@ -21,6 +23,8 @@ interface OSStore {
   isPoweredOff: boolean;
   isSleeping: boolean;
   isRestarting: boolean;
+  theme: ThemeId;
+  trashedApps: Set<WindowId>;
 
   // Window Actions
   openWindow: (id: WindowId) => void;
@@ -34,13 +38,18 @@ interface OSStore {
   powerOff: () => void;
   sleep: () => void;
   restart: () => void;
+
+  // Theme & Trash Actions
+  setTheme: (theme: ThemeId) => void;
+  moveToTrash: (id: WindowId) => void;
+  restoreFromTrash: (id: WindowId) => void;
 }
 
 const initialWindows: Record<WindowId, WindowState> = {
   about: {
     id: 'about',
     title: 'About.exe',
-    isOpen: false, // Closed by default
+    isOpen: false,
     isMinimized: false,
     zIndex: 10,
     width: 500,
@@ -76,8 +85,8 @@ const initialWindows: Record<WindowId, WindowState> = {
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
-    width: 550,
-    height: 600,
+    width: 650,
+    height: 500,
     defaultX: 200,
     defaultY: 80,
   },
@@ -158,6 +167,83 @@ const initialWindows: Record<WindowId, WindowState> = {
     defaultX: 100,
     defaultY: 80,
   },
+  finder: {
+    id: 'finder',
+    title: 'KV_Finder',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 700,
+    height: 500,
+    defaultX: 50,
+    defaultY: 50,
+  },
+  settings: {
+    id: 'settings',
+    title: 'System Settings',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 500,
+    height: 450,
+    defaultX: 150,
+    defaultY: 150,
+  },
+  notes: {
+    id: 'notes',
+    title: 'Sticky Notes',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 300,
+    height: 300,
+    defaultX: 600,
+    defaultY: 50,
+  },
+  monitor: {
+    id: 'monitor',
+    title: 'Activity Monitor',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 600,
+    height: 400,
+    defaultX: 100,
+    defaultY: 300,
+  },
+  messenger: {
+    id: 'messenger',
+    title: 'KV_Messenger',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 400,
+    height: 550,
+    defaultX: 400,
+    defaultY: 100,
+  },
+  calendar: {
+    id: 'calendar',
+    title: 'Calendar',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 500,
+    height: 500,
+    defaultX: 200,
+    defaultY: 200,
+  },
+  game: {
+    id: 'game',
+    title: 'KV_Snake',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 400,
+    height: 450,
+    defaultX: 300,
+    defaultY: 150,
+  },
 };
 
 export const useStore = create<OSStore>((set) => ({
@@ -167,6 +253,8 @@ export const useStore = create<OSStore>((set) => ({
   isPoweredOff: false,
   isSleeping: false,
   isRestarting: false,
+  theme: 'yellow',
+  trashedApps: new Set(),
 
   openWindow: (id) =>
     set((state) => {
@@ -198,9 +286,6 @@ export const useStore = create<OSStore>((set) => ({
 
   focusWindow: (id) =>
     set((state) => {
-      // If already highest, do nothing to avoid unnecessary re-renders
-      if (state.windows[id].zIndex === state.highestZIndex) return state;
-
       const newZ = state.highestZIndex + 1;
       return {
         highestZIndex: newZ,
@@ -237,4 +322,18 @@ export const useStore = create<OSStore>((set) => ({
       window.location.reload();
     }, 5000);
   },
+
+  setTheme: (theme) => set({ theme }),
+
+  moveToTrash: (id) => set((state) => {
+    const newTrash = new Set(state.trashedApps);
+    newTrash.add(id);
+    return { trashedApps: newTrash };
+  }),
+
+  restoreFromTrash: (id) => set((state) => {
+    const newTrash = new Set(state.trashedApps);
+    newTrash.delete(id);
+    return { trashedApps: newTrash };
+  }),
 }));

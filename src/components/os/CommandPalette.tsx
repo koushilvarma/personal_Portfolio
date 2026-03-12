@@ -2,14 +2,27 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../../store/osStore';
 import type { WindowId } from '../../store/osStore';
-import { Search, MonitorPlay, Code2, FolderGit2, CalendarDays, Mail, XSquare } from 'lucide-react';
+import { Search, MonitorPlay, Code2, FolderGit2, CalendarDays, Mail, XSquare, Palette, Calculator, Terminal, Music, FileText, Settings, StickyNote, Activity, MessageSquare, Gamepad2 } from 'lucide-react';
 
 const commands = [
-  { id: 'about', label: 'Open About', category: 'Apps', icon: MonitorPlay, action: () => actions.open('about') },
-  { id: 'skills', label: 'Open Skills', category: 'Apps', icon: Code2, action: () => actions.open('skills') },
-  { id: 'projects', label: 'Open Projects', category: 'Apps', icon: FolderGit2, action: () => actions.open('projects') },
-  { id: 'timeline', label: 'Open Timeline', category: 'Apps', icon: CalendarDays, action: () => actions.open('timeline') },
-  { id: 'contact', label: 'Open Contact', category: 'Apps', icon: Mail, action: () => actions.open('contact') },
+  { id: 'about', label: 'About Koushil', category: 'Apps', icon: MonitorPlay, action: () => actions.open('about') },
+  { id: 'skills', label: 'Developer Skills', category: 'Apps', icon: Code2, action: () => actions.open('skills') },
+  { id: 'projects', label: 'Portfolio Projects', category: 'Apps', icon: FolderGit2, action: () => actions.open('projects') },
+  { id: 'timeline', label: 'Career Timeline', category: 'Apps', icon: CalendarDays, action: () => actions.open('timeline') },
+  { id: 'contact', label: 'Contact Me', category: 'Apps', icon: Mail, action: () => actions.open('contact') },
+  { id: 'resume', label: 'View Resume', category: 'Apps', icon: FileText, action: () => actions.open('resume') },
+  { id: 'paint', label: 'Paint / Canvas', category: 'Apps', icon: Palette, action: () => actions.open('paint') },
+  { id: 'calculator', label: 'Calculator', category: 'Apps', icon: Calculator, action: () => actions.open('calculator') },
+  { id: 'terminal', label: 'Command Prompt', category: 'Apps', icon: Terminal, action: () => actions.open('terminal') },
+  { id: 'music', label: 'Music Player', category: 'Apps', icon: Music, action: () => actions.open('music') },
+  { id: 'docs', label: 'Document Editor', category: 'Apps', icon: FileText, action: () => actions.open('docs') },
+  { id: 'finder', label: 'KV_Finder Explorer', category: 'Apps', icon: Search, action: () => actions.open('finder') },
+  { id: 'settings', label: 'System Settings', category: 'Apps', icon: Settings, action: () => actions.open('settings') },
+  { id: 'notes', label: 'Sticky Notes', category: 'Apps', icon: StickyNote, action: () => actions.open('notes') },
+  { id: 'monitor', label: 'Activity Monitor', category: 'Apps', icon: Activity, action: () => actions.open('monitor') },
+  { id: 'messenger', label: 'KV_Messenger', category: 'Apps', icon: MessageSquare, action: () => actions.open('messenger') },
+  { id: 'calendar', label: 'System Calendar', category: 'Apps', icon: CalendarDays, action: () => actions.open('calendar') },
+  { id: 'game', label: 'KV_Snake Game', category: 'Apps', icon: Gamepad2, action: () => actions.open('game') },
   { id: 'close_all', label: 'Close All Windows', category: 'System', icon: XSquare, action: () => actions.closeAll() },
 ];
 

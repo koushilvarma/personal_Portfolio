@@ -1,6 +1,6 @@
 import { useStore } from '../../store/osStore';
 import type { WindowId } from '../../store/osStore';
-import { UserCircle, Code2, FolderGit2, CalendarDays, Mail, FileText, Palette, Calculator, Terminal, Music, Layout } from 'lucide-react';
+import { UserCircle, Code2, FolderGit2, CalendarDays, Mail, FileText, Search, Settings, StickyNote, Activity, MessageSquare, Gamepad2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const apps = [
@@ -10,11 +10,12 @@ const apps = [
   { id: 'timeline' as WindowId, label: 'Timeline', icon: CalendarDays, color: 'bg-orange-400' },
   { id: 'contact' as WindowId, label: 'Contact', icon: Mail, color: 'bg-red-400' },
   { id: 'resume' as WindowId, label: 'Resume', icon: FileText, color: 'bg-yellow-400' },
-  { id: 'paint' as WindowId, label: 'Paint', icon: Palette, color: 'bg-pink-400' },
-  { id: 'calculator' as WindowId, label: 'Calculator', icon: Calculator, color: 'bg-blue-300' },
-  { id: 'terminal' as WindowId, label: 'CMD', icon: Terminal, color: 'bg-zinc-800' },
-  { id: 'music' as WindowId, label: 'Music', icon: Music, color: 'bg-pink-500' },
-  { id: 'docs' as WindowId, label: 'Word', icon: Layout, color: 'bg-blue-600' },
+  { id: 'finder' as WindowId, label: 'Search', icon: Search, color: 'bg-blue-500' },
+  { id: 'settings' as WindowId, label: 'Settings', icon: Settings, color: 'bg-zinc-400' },
+  { id: 'notes' as WindowId, label: 'Notes', icon: StickyNote, color: 'bg-yellow-200' },
+  { id: 'monitor' as WindowId, label: 'Activity', icon: Activity, color: 'bg-red-500' },
+  { id: 'messenger' as WindowId, label: 'Chat', icon: MessageSquare, color: 'bg-indigo-400' },
+  { id: 'game' as WindowId, label: 'Snake', icon: Gamepad2, color: 'bg-green-500' },
 ];
 
 export default function Dock() {

@@ -1,3 +1,24 @@
+:root {
+  --os-bg-yellow: #F5E642;
+  --os-bg-white: #F0EDE8;
+  --os-window: #FFFFFF;
+  --os-border: #111111;
+}
+
+.theme-dark {
+  --os-bg-yellow: #1A1A1A;
+  --os-bg-white: #2D2D2D;
+  --os-window: #3D3D3D;
+  --os-border: #FFFFFF;
+}
+
+.theme-classic {
+  --os-bg-yellow: #008080;
+  --os-bg-white: #C0C0C0;
+  --os-window: #FFFFFF;
+  --os-border: #000000;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,6 +40,7 @@
 }
 
 @layer components {
+
   /* Common brutalist interactive element */
   .brutal-btn {
     @apply bg-os-window border-3 border-os-border shadow-brutal-sm font-bold active:translate-x-0.5 active:translate-y-0.5 active:shadow-brutal-active transition-transform duration-75;
@@ -34,9 +56,11 @@
     width: 12px;
     height: 12px;
   }
+
   .brutal-scrollbar::-webkit-scrollbar-track {
     @apply bg-os-window border-l-3 border-os-border;
   }
+
   .brutal-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-os-border border-3 border-os-window;
   }

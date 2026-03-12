@@ -3,7 +3,7 @@ import Dock from './components/os/Dock';
 import Window from './components/os/Window';
 import CommandPalette from './components/os/CommandPalette';
 import BackgroundAnimations from './components/os/BackgroundAnimations';
-import { Monitor, Loader2 } from 'lucide-react';
+import { Monitor, Loader2, UserCircle, FolderGit2, FileText, Gamepad2, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AboutApp from './components/apps/AboutApp';
@@ -17,17 +17,33 @@ import CalculatorApp from './components/apps/CalculatorApp';
 import TerminalApp from './components/apps/TerminalApp';
 import MusicApp from './components/apps/MusicApp';
 import DocsApp from './components/apps/DocsApp';
+import StickyNotesApp from './components/apps/StickyNotesApp';
+import CalendarApp from './components/apps/CalendarApp';
+import SystemSettingsApp from './components/apps/SystemSettingsApp';
+import ActivityMonitorApp from './components/apps/ActivityMonitorApp';
+import FinderApp from './components/apps/FinderApp';
+import MessengerApp from './components/apps/MessengerApp';
+import RetroGameApp from './components/apps/RetroGameApp';
 
-import { useStore } from './store/osStore';
+import { useStore, type WindowId } from './store/osStore';
 
 function App() {
-  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting } = useStore();
+  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting, theme, trashedApps, moveToTrash, openWindow } = useStore();
 
-  const isAnyWindowOpen = Object.values(windows || {}).some(w => w?.isOpen && !w?.isMinimized);
+  const isAnyWindowOpen = Object.values(windows).some((w: any) => w.isOpen && !w.isMinimized);
+
+  const themeClass = theme === 'dark' ? 'theme-dark' : theme === 'classic' ? 'theme-classic' : '';
+
+  const desktopApps: { id: WindowId, label: string, icon: any }[] = [
+    { id: 'about', label: 'About Me', icon: UserCircle },
+    { id: 'projects', label: 'Projects', icon: FolderGit2 },
+    { id: 'resume', label: 'Resume', icon: FileText },
+    { id: 'game', label: 'Snake_Game', icon: Gamepad2 },
+  ];
 
   return (
     <div 
-      className="w-screen h-screen overflow-hidden bg-os-bg-yellow bg-[radial-gradient(#dbc516_1px,transparent_1px)] [background-size:20px_20px] relative font-sans"
+      className={`w-screen h-screen overflow-hidden bg-os-bg-yellow bg-[radial-gradient(var(--os-border)_0.5px,transparent_0.5px)] [background-size:20px_20px] relative font-sans ${themeClass}`}
       onClick={() => isCommandPaletteOpen && setCommandPalette(false)}
     >
       <MenuBar />
@@ -50,7 +66,41 @@ function App() {
         </div>
 
         {/* The Windows (pointer events auto to allow interaction) */}
-        <div className="absolute inset-0 pointer-events-auto overflow-hidden">
+        <div className="flex-1 relative pointer-events-none p-8 z-10 flex flex-col items-start gap-8">
+          {desktopApps.map(app => !trashedApps.has(app.id) && (
+            <div 
+              key={app.id}
+              className="group pointer-events-auto flex flex-col items-center gap-1 cursor-pointer"
+              onDoubleClick={() => openWindow(app.id)}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                if (confirm(`Move ${app.label} to Trash?`)) moveToTrash(app.id);
+              }}
+            >
+              <div className="bg-os-window border-3 border-os-border p-3 shadow-brutal-sm group-hover:-translate-y-1 transition-transform group-active:shadow-brutal-active">
+                <app.icon size={36} className="text-os-border" />
+              </div>
+              <span className="font-mono text-[10px] font-bold bg-os-border text-white px-1 uppercase tracking-tighter">
+                {app.label}
+              </span>
+            </div>
+          ))}
+
+          {/* Desktop Trash Bin */}
+          <div className="absolute bottom-16 right-8 pointer-events-auto">
+            <div 
+              className="flex flex-col items-center gap-1 group cursor-pointer"
+              onDoubleClick={() => openWindow('finder')} // Finder can show trashed items
+            >
+              <div className="bg-os-window border-3 border-os-border p-3 shadow-brutal-sm group-hover:-translate-y-1 transition-transform">
+                <Trash2 size={32} className="text-os-border" />
+              </div>
+              <span className="font-mono text-[10px] font-bold bg-os-border text-white px-1 uppercase tracking-tighter shadow-black shadow-sm">Trash</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute inset-4 pointer-events-none z-20 flex items-center justify-center">
           <Window id="about"><AboutApp /></Window>
           <Window id="skills"><SkillsApp /></Window>
           <Window id="projects"><ProjectsApp /></Window>
@@ -62,6 +112,13 @@ function App() {
           <Window id="terminal"><TerminalApp /></Window>
           <Window id="music"><MusicApp /></Window>
           <Window id="docs"><DocsApp /></Window>
+          <Window id="notes"><StickyNotesApp /></Window>
+          <Window id="calendar"><CalendarApp /></Window>
+          <Window id="settings"><SystemSettingsApp /></Window>
+          <Window id="monitor"><ActivityMonitorApp /></Window>
+          <Window id="finder"><FinderApp /></Window>
+          <Window id="messenger"><MessengerApp /></Window>
+          <Window id="game"><RetroGameApp /></Window>
         </div>
 
       </main>
