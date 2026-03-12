@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply font-sans bg-os-bg-yellow text-os-border overflow-hidden select-none;
+    @apply font-sans bg-os-bg-main text-os-border overflow-hidden select-none;
   }
 
   ::selection {

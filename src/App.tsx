@@ -31,8 +31,8 @@ function App() {
       <main className="absolute inset-0 pt-8 pb-20 overflow-hidden pointer-events-none">
         
         {/* Decorative Desktop Elements */}
-        <div className="absolute top-20 right-20 w-64 bg-[#fbf5c4] border-3 border-os-border shadow-brutal-sm p-4 rotate-2 font-mono text-sm shadow-black pointer-events-none">
-          <div className="w-4 h-4 rounded-full bg-red-400 absolute -top-2 left-1/2 -translate-x-1/2 border-2 border-os-border" />
+        <div className="absolute top-20 right-20 w-64 bg-white border-3 border-os-border shadow-brutal-sm p-4 rotate-2 font-mono text-sm shadow-black pointer-events-none">
+          <div className="w-4 h-4 rounded-full bg-gray-400 absolute -top-2 left-1/2 -translate-x-1/2 border-2 border-os-border" />
           <strong>TODO:</strong>
           <ul className="list-disc pl-4 mt-2 space-y-1">
             <li>Pass AWS cert</li>

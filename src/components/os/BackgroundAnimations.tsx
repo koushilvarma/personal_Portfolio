@@ -40,41 +40,44 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
           key={shape.id}
           drag
           dragMomentum={false}
-          className="absolute flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing"
+          className="absolute pointer-events-auto cursor-grab active:cursor-grabbing"
           initial={{
             x: `${shape.startX}vw`,
             y: `${shape.startY}vh`,
-            rotate: 0,
           }}
-          animate={{
-            x: [`${shape.startX}vw`, `${(shape.startX + 20) % 100}vw`, `${(shape.startX - 15 + 100) % 100}vw`, `${shape.startX}vw`],
-            y: [`${shape.startY}vh`, `${(shape.startY + 30) % 100}vh`, `${(shape.startY - 20 + 100) % 100}vh`, `${shape.startY}vh`],
-            rotate: [0, 90, 180, 360],
-          }}
-          transition={{
-            duration: 20 + shape.id * 5,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-          style={{ width: shape.size, height: shape.size }}
+          style={{ width: shape.size, height: shape.size, zIndex: 0 }}
         >
-          {shape.type === 'square' && (
-            <div className="w-full h-full bg-blue-400 border-4 border-os-border shadow-brutal-md" />
-          )}
-          {shape.type === 'circle' && (
-            <div className="w-full h-full bg-red-400 border-4 border-os-border rounded-full shadow-brutal-md" />
-          )}
-          {shape.type === 'star' && (
-            <div className="font-bold text-6xl text-orange-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
-              *
-            </div>
-          )}
-          {shape.type === 'icon' && shape.icon && (
-            <shape.icon 
-              strokeWidth={2.5} 
-              className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color} select-none`} 
-            />
-          )}
+          <motion.div
+            className="w-full h-full flex items-center justify-center"
+            animate={{
+              rotate: [0, 90, 180, 270, 360],
+              x: [0, 15, -15, 0],
+              y: [0, -20, 20, 0],
+            }}
+            transition={{
+              duration: 20 + shape.id * 2,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            {shape.type === 'square' && (
+              <div className="w-full h-full bg-gray-200 border-4 border-os-border shadow-brutal-md" />
+            )}
+            {shape.type === 'circle' && (
+              <div className="w-full h-full bg-gray-300 border-4 border-os-border rounded-full shadow-brutal-md" />
+            )}
+            {shape.type === 'star' && (
+              <div className="font-bold text-6xl text-gray-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
+                *
+              </div>
+            )}
+            {shape.type === 'icon' && shape.icon && (
+              <shape.icon 
+                strokeWidth={2.5} 
+                className="w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] text-gray-600 select-none" 
+              />
+            )}
+          </motion.div>
         </motion.div>
       ))}
     </div>

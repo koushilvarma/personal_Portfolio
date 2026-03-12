@@ -9,7 +9,7 @@ const projects = [
     tags: ['Next.js', 'PostgreSQL', 'Auth.js', 'Prisma'],
     year: '2025',
     link: 'https://github.com/koushilvarma/placley',
-    color: 'bg-yellow-200',
+    color: 'bg-gray-200',
   },
   {
     id: 'lms_application',
@@ -18,7 +18,7 @@ const projects = [
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
     year: '2025',
     link: 'https://github.com/koushilvarma/lms_application',
-    color: 'bg-purple-200',
+    color: 'bg-gray-300',
   },
   {
     id: 'workflowautomation',
@@ -27,7 +27,7 @@ const projects = [
     tags: ['TypeScript', 'Go', 'Redis', 'BullMQ'],
     year: '2025',
     link: 'https://github.com/koushilvarma/workflowautomation_application',
-    color: 'bg-teal-200',
+    color: 'bg-gray-200',
   },
   {
     id: 'personal_Portfolio',
@@ -36,7 +36,7 @@ const projects = [
     tags: ['React', 'TypeScript', 'Tailwind', 'Zustand'],
     year: '2026',
     link: 'https://github.com/koushilvarma/personal_Portfolio',
-    color: 'bg-blue-200',
+    color: 'bg-gray-300',
   },
   {
     id: 'docker_demo',
@@ -45,7 +45,7 @@ const projects = [
     tags: ['Docker', 'Shell', 'DevOps'],
     year: '2025',
     link: 'https://github.com/koushilvarma/docker_demo',
-    color: 'bg-orange-200',
+    color: 'bg-gray-200',
   },
 ];
 
@@ -53,7 +53,7 @@ export default function ProjectsApp() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
-    <div className="flex h-full flex-col md:flex-row bg-[#f0ede8]">
+    <div className="flex h-full flex-col md:flex-row bg-os-bg-main">
       {/* Sidebar: File Explorer */}
       <div className="w-full md:w-1/3 border-b-3 md:border-b-0 md:border-r-3 border-os-border flex flex-col bg-white">
         <div className="p-2 border-b-3 border-os-border font-bold text-xs uppercase bg-gray-200">
@@ -70,7 +70,7 @@ export default function ProjectsApp() {
                   : 'bg-transparent text-os-border border-transparent hover:border-os-border'
               }`}
             >
-              <FolderGit2 size={16} className={selectedId === p.id ? 'text-white' : 'text-blue-500'} />
+              <FolderGit2 size={16} className={selectedId === p.id ? 'text-white' : 'text-gray-500'} />
               <span className="truncate">{p.title}</span>
             </button>
           ))}
@@ -103,7 +103,7 @@ export default function ProjectsApp() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-yellow-300 border-3 border-os-border shadow-brutal-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-brutal-active transition-all"
+                    className="p-2 bg-os-border text-white border-3 border-os-border shadow-brutal-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-brutal-active transition-all"
                     title="View Source"
                   >
                     <ExternalLink size={20} />

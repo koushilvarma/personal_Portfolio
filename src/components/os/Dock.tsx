@@ -4,11 +4,11 @@ import { UserCircle, Code2, FolderGit2, CalendarDays, Mail } from 'lucide-react'
 import { motion } from 'framer-motion';
 
 const apps = [
-  { id: 'about' as WindowId, label: 'About', icon: UserCircle, color: 'bg-blue-400' },
-  { id: 'skills' as WindowId, label: 'Skills', icon: Code2, color: 'bg-green-400' },
-  { id: 'projects' as WindowId, label: 'Projects', icon: FolderGit2, color: 'bg-purple-400' },
-  { id: 'timeline' as WindowId, label: 'Timeline', icon: CalendarDays, color: 'bg-orange-400' },
-  { id: 'contact' as WindowId, label: 'Contact', icon: Mail, color: 'bg-red-400' },
+  { id: 'about' as WindowId, label: 'About', icon: UserCircle, color: 'bg-white' },
+  { id: 'skills' as WindowId, label: 'Skills', icon: Code2, color: 'bg-gray-100' },
+  { id: 'projects' as WindowId, label: 'Projects', icon: FolderGit2, color: 'bg-gray-200' },
+  { id: 'timeline' as WindowId, label: 'Timeline', icon: CalendarDays, color: 'bg-gray-100' },
+  { id: 'contact' as WindowId, label: 'Contact', icon: Mail, color: 'bg-white' },
 ];
 
 export default function Dock() {

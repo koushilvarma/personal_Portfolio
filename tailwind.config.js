@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'os-bg-yellow': '#F5E642',
-        'os-bg-white': '#F0EDE8',
+        'os-bg-main': '#FFFFFF',
+        'os-bg-secondary': '#E0E0E0',
         'os-window': '#FFFFFF',
         'os-border': '#111111',
       },
