@@ -21,9 +21,9 @@ import DocsApp from './components/apps/DocsApp';
 import { useStore } from './store/osStore';
 
 function App() {
-  const { isCommandPaletteOpen, setCommandPalette, windows, isPoweredOff, isSleeping, isRestarting } = useStore();
+  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting } = useStore();
 
-  const isAnyWindowOpen = Object.values(windows).some(w => w.isOpen && !w.isMinimized);
+  const isAnyWindowOpen = Object.values(windows || {}).some(w => w?.isOpen && !w?.isMinimized);
 
   return (
     <div 
