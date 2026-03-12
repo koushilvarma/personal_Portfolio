@@ -34,7 +34,7 @@ const initialWindows: Record<WindowId, WindowState> = {
   about: {
     id: 'about',
     title: 'About.exe',
-    isOpen: true, // Open by default
+    isOpen: false, // Closed by default
     isMinimized: false,
     zIndex: 10,
     width: 500,
