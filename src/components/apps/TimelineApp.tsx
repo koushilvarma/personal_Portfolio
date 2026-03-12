@@ -31,28 +31,14 @@ const formatLogTime = (timeStr: string) => {
 };
 
 export default function TimelineApp() {
-  const [displayedLogs, setDisplayedLogs] = useState<typeof logs>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < logs.length) {
-        setDisplayedLogs(prev => [...prev, logs[index]]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 150); // Slightly faster for better UX
-
-    return () => clearInterval(interval);
-  }, []);
-
+  // Auto scroll to bottom on mount
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [displayedLogs]);
+  }, []);
 
   const getLevelColor = (level: string) => {
     switch (level) {
@@ -60,25 +46,30 @@ export default function TimelineApp() {
       case 'SUCCESS': return 'text-green-700 bg-green-100';
       case 'WARN': return 'text-yellow-700 bg-yellow-100';
       case 'ERROR': return 'text-red-600 bg-red-100';
-      default: return 'text-gray-600';
+      default: return 'text-zinc-600 bg-zinc-100';
     }
   };
 
   return (
-    <div className="bg-black text-white p-6 font-mono text-xs md:text-sm h-full flex flex-col">
+    <div className="bg-black text-zinc-300 p-6 font-mono text-xs md:text-sm h-full flex flex-col">
       <div ref={scrollRef} className="flex-1 overflow-y-auto brutal-scrollbar pr-2 space-y-4">
-        {displayedLogs.map((log, i) => (
-          <div key={i} className="flex flex-col sm:flex-row gap-2 sm:gap-4 hover:bg-green-900/30 p-1 transition-colors border-l-2 border-transparent hover:border-green-500">
-            <span className="text-gray-500 whitespace-nowrap opacity-70">
+        {logs.map((log, i) => (
+          <div 
+            key={i} 
+            className="flex flex-col sm:flex-row gap-2 sm:gap-4 hover:bg-zinc-900/50 p-2 transition-colors border-l-2 border-transparent hover:border-zinc-500 group"
+          >
+            <span className="text-zinc-500 whitespace-nowrap opacity-70 group-hover:opacity-100 transition-opacity">
               {formatLogTime(log.time)}
             </span>
-            <span className={`px-1 py-0.5 font-bold text-[10px] sm:text-xs min-w-[60px] text-center ${getLevelColor(log.level)}`}>
-              {log.level}
+            <span className={`px-2 py-0.5 font-bold text-[10px] sm:text-xs min-w-[70px] text-center uppercase tracking-tighter ${getLevelColor(log.level)}`}>
+              [{log.level}]
             </span>
-            <span className="text-green-300 break-words flex-1 leading-relaxed">{log.msg}</span>
+            <span className="text-zinc-200 break-words flex-1 leading-relaxed">{log.msg}</span>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+
