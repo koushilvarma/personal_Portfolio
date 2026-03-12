@@ -4,7 +4,7 @@ import {
   Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
   Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText, 
   Gamepad2, Music, Heart, Camera, Github, Linkedin, MessageSquare, Settings, Search, Layout,
-  Smartphone, Monitor, Rocket, Zap, Anchor, Coffee
+  Smartphone, Rocket, Zap, Coffee, Palette, Calculator
 } from 'lucide-react';
 
 const shapes = [
@@ -40,6 +40,8 @@ const shapes = [
   { id: 30, type: 'icon', icon: Rocket, label: 'Launch', color: 'text-orange-400', size: 60, startX: 70, startY: 60 },
   { id: 31, type: 'icon', icon: Zap, label: 'Speed', color: 'text-yellow-300', size: 40, startX: 10, startY: 60 },
   { id: 32, type: 'icon', icon: Coffee, label: 'Coffee', color: 'text-amber-600', size: 45, startX: 80, startY: 5 },
+  { id: 33, type: 'icon', icon: Palette, label: 'Paint', color: 'text-pink-400', size: 55, startX: 25, startY: 45 },
+  { id: 34, type: 'icon', icon: Calculator, label: 'Math', color: 'text-blue-400', size: 50, startX: 75, startY: 30 },
 ];
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {

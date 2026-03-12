@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' | 'resume';
+export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' | 'resume' | 'paint' | 'calculator';
 
 interface WindowState {
   id: WindowId;
@@ -96,6 +96,28 @@ const initialWindows: Record<WindowId, WindowState> = {
     height: 700,
     defaultX: 300,
     defaultY: 100,
+  },
+  paint: {
+    id: 'paint',
+    title: 'Paint.exe',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 600,
+    height: 500,
+    defaultX: 100,
+    defaultY: 100,
+  },
+  calculator: {
+    id: 'calculator',
+    title: 'Calculator.app',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 300,
+    height: 400,
+    defaultX: 400,
+    defaultY: 150,
   },
 };
 
