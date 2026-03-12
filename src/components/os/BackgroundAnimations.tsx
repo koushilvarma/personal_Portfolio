@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Code2, Database, Shield, Box, Server, GitBranch } from 'lucide-react';
+import { 
+  Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
+  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive 
+} from 'lucide-react';
 
 const shapes = [
   { id: 1, type: 'square', size: 60, startX: 10, startY: 20 },
@@ -13,6 +16,13 @@ const shapes = [
   { id: 8, type: 'icon', icon: GitBranch, color: 'text-orange-500', size: 40, startX: 40, startY: 10 },
   { id: 9, type: 'icon', icon: Shield, color: 'text-red-500', size: 50, startX: 60, startY: 90 },
   { id: 10, type: 'icon', icon: Box, color: 'text-teal-500', size: 45, startX: 50, startY: 65 },
+  { id: 11, type: 'icon', icon: Cpu, color: 'text-gray-500', size: 55, startX: 5, startY: 85 },
+  { id: 12, type: 'icon', icon: Globe, color: 'text-cyan-500', size: 50, startX: 90, startY: 70 },
+  { id: 13, type: 'icon', icon: Wifi, color: 'text-indigo-500', size: 40, startX: 30, startY: 30 },
+  { id: 14, type: 'icon', icon: Cloud, color: 'text-sky-400', size: 65, startX: 70, startY: 5 },
+  { id: 15, type: 'icon', icon: Layers, color: 'text-emerald-500', size: 45, startX: 20, startY: 10 },
+  { id: 16, type: 'icon', icon: Activity, color: 'text-rose-500', size: 50, startX: 10, startY: 40 },
+  { id: 17, type: 'icon', icon: HardDrive, color: 'text-slate-500', size: 55, startX: 80, startY: 90 },
 ];
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {
@@ -28,7 +38,9 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
       {shapes.map((shape) => (
         <motion.div
           key={shape.id}
-          className="absolute flex items-center justify-center"
+          drag
+          dragMomentum={false}
+          className="absolute flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing"
           initial={{
             x: `${shape.startX}vw`,
             y: `${shape.startY}vh`,
@@ -53,14 +65,14 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
             <div className="w-full h-full bg-red-400 border-4 border-os-border rounded-full shadow-brutal-md" />
           )}
           {shape.type === 'star' && (
-            <div className="font-bold text-6xl text-orange-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)]" style={{ WebkitTextStroke: '3px #111' }}>
+            <div className="font-bold text-6xl text-orange-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
               *
             </div>
           )}
           {shape.type === 'icon' && shape.icon && (
             <shape.icon 
               strokeWidth={2.5} 
-              className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color}`} 
+              className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color} select-none`} 
             />
           )}
         </motion.div>
