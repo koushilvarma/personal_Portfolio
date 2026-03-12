@@ -9,6 +9,7 @@ import SkillsApp from './components/apps/SkillsApp';
 import ProjectsApp from './components/apps/ProjectsApp';
 import TimelineApp from './components/apps/TimelineApp';
 import ContactApp from './components/apps/ContactApp';
+import ResumeApp from './components/apps/ResumeApp';
 
 import { useStore } from './store/osStore';
 
@@ -48,6 +49,7 @@ function App() {
           <Window id="projects"><ProjectsApp /></Window>
           <Window id="timeline"><TimelineApp /></Window>
           <Window id="contact"><ContactApp /></Window>
+          <Window id="resume"><ResumeApp /></Window>
         </div>
 
       </main>

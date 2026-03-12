@@ -2,27 +2,28 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
-  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle 
+  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText 
 } from 'lucide-react';
 
 const shapes = [
-  { id: 1, type: 'square', size: 60, startX: 10, startY: 20 },
-  { id: 2, type: 'circle', size: 40, startX: 80, startY: 15 },
-  { id: 3, type: 'icon', icon: Terminal, color: 'text-blue-500', size: 50, startX: 25, startY: 70 },
-  { id: 4, type: 'icon', icon: Code2, color: 'text-green-500', size: 55, startX: 75, startY: 80 },
-  { id: 5, type: 'star', size: 45, startX: 50, startY: 40 },
-  { id: 6, type: 'icon', icon: Database, color: 'text-yellow-500', size: 45, startX: 15, startY: 50 },
-  { id: 7, type: 'icon', icon: Server, color: 'text-purple-500', size: 60, startX: 85, startY: 45 },
-  { id: 8, type: 'icon', icon: GitBranch, color: 'text-orange-500', size: 40, startX: 40, startY: 10 },
-  { id: 9, type: 'icon', icon: Shield, color: 'text-red-500', size: 50, startX: 60, startY: 90 },
-  { id: 10, type: 'icon', icon: Box, color: 'text-teal-500', size: 45, startX: 50, startY: 65 },
-  { id: 11, type: 'icon', icon: Cpu, color: 'text-gray-500', size: 55, startX: 5, startY: 85 },
-  { id: 12, type: 'icon', icon: Globe, color: 'text-cyan-500', size: 50, startX: 90, startY: 70 },
-  { id: 13, type: 'icon', icon: Wifi, color: 'text-indigo-500', size: 40, startX: 30, startY: 30 },
-  { id: 14, type: 'icon', icon: Cloud, color: 'text-sky-400', size: 65, startX: 70, startY: 5 },
-  { id: 15, type: 'icon', icon: Layers, color: 'text-emerald-500', size: 45, startX: 20, startY: 10 },
-  { id: 16, type: 'icon', icon: Activity, color: 'text-rose-500', size: 50, startX: 10, startY: 40 },
-  { id: 17, type: 'icon', icon: HardDrive, color: 'text-slate-500', size: 55, startX: 80, startY: 90 },
+  { id: 1, type: 'square', label: 'Data', size: 60, startX: 10, startY: 20 },
+  { id: 2, type: 'circle', label: 'System', size: 40, startX: 80, startY: 15 },
+  { id: 3, type: 'icon', icon: Terminal, label: 'Terminal', color: 'text-blue-500', size: 50, startX: 25, startY: 70 },
+  { id: 4, type: 'icon', icon: Code2, label: 'Source', color: 'text-green-500', size: 55, startX: 75, startY: 80 },
+  { id: 5, type: 'star', label: 'Feature', size: 45, startX: 50, startY: 40 },
+  { id: 6, type: 'icon', icon: Database, label: 'Storage', color: 'text-yellow-500', size: 45, startX: 15, startY: 50 },
+  { id: 7, type: 'icon', icon: Server, label: 'Server', color: 'text-purple-500', size: 60, startX: 85, startY: 45 },
+  { id: 8, type: 'icon', icon: GitBranch, label: 'Branch', color: 'text-orange-500', size: 40, startX: 40, startY: 10 },
+  { id: 9, type: 'icon', icon: Shield, label: 'Security', color: 'text-red-500', size: 50, startX: 60, startY: 90 },
+  { id: 10, type: 'icon', icon: Box, label: 'Package', color: 'text-teal-500', size: 45, startX: 50, startY: 65 },
+  { id: 11, type: 'icon', icon: Cpu, label: 'Core', color: 'text-gray-500', size: 55, startX: 5, startY: 85 },
+  { id: 12, type: 'icon', icon: Globe, label: 'Network', color: 'text-cyan-500', size: 50, startX: 90, startY: 70 },
+  { id: 13, type: 'icon', icon: Wifi, label: 'Connect', color: 'text-indigo-500', size: 40, startX: 30, startY: 30 },
+  { id: 14, type: 'icon', icon: Cloud, label: 'Cloud', color: 'text-sky-400', size: 65, startX: 70, startY: 5 },
+  { id: 15, type: 'icon', icon: Layers, label: 'Layers', color: 'text-emerald-500', size: 45, startX: 20, startY: 10 },
+  { id: 16, type: 'icon', icon: Activity, label: 'Monitor', color: 'text-rose-500', size: 50, startX: 10, startY: 40 },
+  { id: 17, type: 'icon', icon: HardDrive, label: 'Drive', color: 'text-slate-500', size: 55, startX: 80, startY: 90 },
+  { id: 18, type: 'icon', icon: FileText, label: 'Resume', color: 'text-yellow-400', size: 60, startX: 40, startY: 80 },
 ];
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {
@@ -88,22 +89,34 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
               ease: "linear"
             }}
           >
-            {shape.type === 'square' && (
-              <div className="w-full h-full bg-blue-400 border-4 border-os-border shadow-brutal-md" />
-            )}
-            {shape.type === 'circle' && (
-              <div className="w-full h-full bg-green-400 border-4 border-os-border rounded-full shadow-brutal-md" />
-            )}
-            {shape.type === 'star' && (
-              <div className="font-bold text-6xl text-yellow-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
-                *
+            {shape.type === 'icon' && shape.icon && (
+              <div className="flex flex-col items-center">
+                <shape.icon 
+                  strokeWidth={2.5} 
+                  className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color} select-none`} 
+                />
+                <span className="mt-2 bg-os-border text-white text-[10px] px-1.5 py-0.5 font-mono font-bold shadow-brutal-xs whitespace-nowrap">
+                  {shape.label}
+                </span>
               </div>
             )}
-            {shape.type === 'icon' && shape.icon && (
-              <shape.icon 
-                strokeWidth={2.5} 
-                className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color} select-none`} 
-              />
+            {(shape.type === 'square' || shape.type === 'circle' || shape.type === 'star') && (
+              <div className="flex flex-col items-center">
+                {shape.type === 'square' && (
+                  <div className="w-full h-full bg-blue-400 border-4 border-os-border shadow-brutal-md" />
+                )}
+                {shape.type === 'circle' && (
+                  <div className="w-full h-full bg-green-400 border-4 border-os-border rounded-full shadow-brutal-md" />
+                )}
+                {shape.type === 'star' && (
+                  <div className="font-bold text-6xl text-yellow-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
+                    *
+                  </div>
+                )}
+                <span className="mt-2 bg-os-border text-white text-[10px] px-1.5 py-0.5 font-mono font-bold shadow-brutal-xs whitespace-nowrap">
+                  {shape.label}
+                </span>
+              </div>
             )}
           </motion.div>
         </motion.div>
