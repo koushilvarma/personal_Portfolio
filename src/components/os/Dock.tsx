@@ -1,6 +1,6 @@
 import { useStore } from '../../store/osStore';
 import type { WindowId } from '../../store/osStore';
-import { UserCircle, Code2, FolderGit2, CalendarDays, Mail, FileText, Palette, Calculator } from 'lucide-react';
+import { UserCircle, Code2, FolderGit2, CalendarDays, Mail, FileText, Palette, Calculator, Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const apps = [
@@ -12,6 +12,7 @@ const apps = [
   { id: 'resume' as WindowId, label: 'Resume', icon: FileText, color: 'bg-yellow-400' },
   { id: 'paint' as WindowId, label: 'Paint', icon: Palette, color: 'bg-pink-400' },
   { id: 'calculator' as WindowId, label: 'Calculator', icon: Calculator, color: 'bg-blue-300' },
+  { id: 'terminal' as WindowId, label: 'CMD', icon: Terminal, color: 'bg-zinc-800' },
 ];
 
 export default function Dock() {

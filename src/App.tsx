@@ -12,6 +12,7 @@ import ContactApp from './components/apps/ContactApp';
 import ResumeApp from './components/apps/ResumeApp';
 import PaintApp from './components/apps/PaintApp';
 import CalculatorApp from './components/apps/CalculatorApp';
+import TerminalApp from './components/apps/TerminalApp';
 
 import { useStore } from './store/osStore';
 
@@ -54,6 +55,7 @@ function App() {
           <Window id="resume"><ResumeApp /></Window>
           <Window id="paint"><PaintApp /></Window>
           <Window id="calculator"><CalculatorApp /></Window>
+          <Window id="terminal"><TerminalApp /></Window>
         </div>
 
       </main>

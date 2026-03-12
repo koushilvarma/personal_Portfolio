@@ -42,6 +42,7 @@ const shapes = [
   { id: 32, type: 'icon', icon: Coffee, label: 'Coffee', color: 'text-amber-600', size: 45, startX: 80, startY: 5 },
   { id: 33, type: 'icon', icon: Palette, label: 'Paint', color: 'text-pink-400', size: 55, startX: 25, startY: 45 },
   { id: 34, type: 'icon', icon: Calculator, label: 'Math', color: 'text-blue-400', size: 50, startX: 75, startY: 30 },
+  { id: 35, type: 'icon', icon: Terminal, label: 'CMD', color: 'text-zinc-500', size: 45, startX: 45, startY: 30 },
 ];
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {
