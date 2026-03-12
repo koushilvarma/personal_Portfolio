@@ -7,6 +7,7 @@ export default function MenuBar() {
   const [time, setTime] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleCommandPalette = useStore((state) => state.toggleCommandPalette);
+  const powerOff = useStore((state) => state.powerOff);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -15,7 +16,9 @@ export default function MenuBar() {
 
   const handleSystemAction = (action: string) => {
     setIsMenuOpen(false);
-    if (action === 'Power Off' || action === 'Restart') {
+    if (action === 'Power Off') {
+      powerOff();
+    } else if (action === 'Restart') {
       window.location.reload();
     }
   };

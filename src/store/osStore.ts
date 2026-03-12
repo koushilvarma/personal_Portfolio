@@ -18,6 +18,7 @@ interface OSStore {
   windows: Record<WindowId, WindowState>;
   highestZIndex: number;
   isCommandPaletteOpen: boolean;
+  isPoweredOff: boolean;
 
   // Window Actions
   openWindow: (id: WindowId) => void;
@@ -28,6 +29,7 @@ interface OSStore {
   // Command Palette Actions
   toggleCommandPalette: () => void;
   setCommandPalette: (isOpen: boolean) => void;
+  powerOff: () => void;
 }
 
 const initialWindows: Record<WindowId, WindowState> = {
@@ -158,6 +160,7 @@ export const useStore = create<OSStore>((set) => ({
   windows: initialWindows,
   highestZIndex: 10,
   isCommandPaletteOpen: false,
+  isPoweredOff: false,
 
   openWindow: (id) =>
     set((state) => {
@@ -207,4 +210,11 @@ export const useStore = create<OSStore>((set) => ({
 
   setCommandPalette: (isOpen) =>
     set({ isCommandPaletteOpen: isOpen }),
+
+  powerOff: () => {
+    set({ isPoweredOff: true });
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  },
 }));
