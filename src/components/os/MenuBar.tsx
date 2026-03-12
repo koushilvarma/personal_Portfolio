@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useStore } from '../../store/osStore';
 import { Command, Power, Moon, RotateCcw, ArrowUpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
