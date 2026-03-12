@@ -14,6 +14,7 @@ import PaintApp from './components/apps/PaintApp';
 import CalculatorApp from './components/apps/CalculatorApp';
 import TerminalApp from './components/apps/TerminalApp';
 import MusicApp from './components/apps/MusicApp';
+import DocsApp from './components/apps/DocsApp';
 
 import { useStore } from './store/osStore';
 
@@ -58,6 +59,7 @@ function App() {
           <Window id="calculator"><CalculatorApp /></Window>
           <Window id="terminal"><TerminalApp /></Window>
           <Window id="music"><MusicApp /></Window>
+          <Window id="docs"><DocsApp /></Window>
         </div>
 
       </main>

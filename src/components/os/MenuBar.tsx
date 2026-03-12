@@ -21,17 +21,19 @@ export default function MenuBar() {
           <div className="w-3 h-3 bg-os-border rounded-full" />
           <span>KV_OSv1</span>
         </div>
-        
+
         <div className="hidden md:flex gap-4 text-xs font-mono">
           <button className="hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors">File</button>
-          <button className="hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors">Edit</button>
+
           <button className="hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors">View</button>
           <button className="hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors">Help</button>
+          <button className="hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors">Tools</button>
+          <button className="hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors">Network</button>
         </div>
       </div>
 
       <div className="flex items-center gap-4">
-        <button 
+        <button
           onClick={toggleCommandPalette}
           className="flex items-center gap-1 hover:bg-os-border hover:text-white px-2 py-0.5 rounded-sm transition-colors font-mono text-xs"
         >
