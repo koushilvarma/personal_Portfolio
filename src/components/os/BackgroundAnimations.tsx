@@ -53,12 +53,12 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
         }}
         className="absolute inset-0 flex items-center justify-center select-none"
       >
-        <div className="flex flex-col items-center gap-4 opacity-15 hover:opacity-30 transition-opacity duration-500">
-          <div className="w-24 h-24 md:w-32 md:h-32 bg-white border-4 border-os-border shadow-brutal-md flex items-center justify-center">
-            <UserCircle size={64} className="text-os-border md:hidden" strokeWidth={1.5} />
-            <UserCircle size={80} className="text-os-border hidden md:block" strokeWidth={1.5} />
+        <div className="flex flex-col items-center gap-6 opacity-15 hover:opacity-30 transition-opacity duration-500">
+          <div className="w-32 h-32 md:w-48 md:h-48 bg-white border-4 border-os-border shadow-brutal-md flex items-center justify-center">
+            <UserCircle size={80} className="text-os-border md:hidden" strokeWidth={1.5} />
+            <UserCircle size={120} className="text-os-border hidden md:block" strokeWidth={1.5} />
           </div>
-          <div className="px-4 py-1 bg-os-border text-white text-lg md:text-2xl font-bold font-mono tracking-tight shadow-brutal-sm">
+          <div className="px-8 py-2 bg-os-border text-white text-xl md:text-4xl font-bold font-mono tracking-tight shadow-brutal-sm">
             Koushil Varma
           </div>
         </div>
