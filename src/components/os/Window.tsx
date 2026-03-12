@@ -64,7 +64,7 @@ export default function Window({ id, children }: WindowProps) {
       }}
       onMouseDown={() => focusWindow(id)}
       style={{ zIndex: windowState.zIndex }}
-      className={`absolute bg-os-window border-3 border-os-border flex flex-col shadow-brutal-lg ${isMaximized ? '' : 'resize overflow-hidden'}`}
+      className={`absolute bg-os-window border-3 border-os-border flex flex-col shadow-brutal-lg pointer-events-auto ${isMaximized ? '' : 'resize overflow-hidden'}`}
     >
       {/* Title Bar */}
       <div 
