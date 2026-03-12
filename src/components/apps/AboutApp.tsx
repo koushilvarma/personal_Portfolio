@@ -3,11 +3,11 @@ export default function AboutApp() {
     <div className="p-6 md:p-8 font-sans">
       <div className="flex flex-col md:flex-row gap-8 items-start">
         {/* Fake Photo Placeholder */}
-        <div className="w-32 h-32 md:w-48 md:h-48 shrink-0 bg-yellow-300 border-4 border-os-border shadow-brutal-md relative overflow-hidden">
+        <div className="w-32 h-32 md:w-48 md:h-48 shrink-0 bg-white border-4 border-os-border shadow-brutal-md relative overflow-hidden">
           <img 
             src="https://avatars.githubusercontent.com/u/143738079?v=4" 
             alt="Koushil Varma Avatar"
-            className="w-full h-full object-cover mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-300"
+            className="w-full h-full object-cover transition-all duration-300"
           />
           <div className="absolute -bottom-4 -right-4 bg-white border-2 border-os-border px-2 py-0.5 font-mono text-[10px] font-bold shadow-brutal-sm">
             v1.0.0
