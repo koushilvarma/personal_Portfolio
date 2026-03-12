@@ -27,6 +27,7 @@ export default function TerminalApp() {
       addLog('output', '  about     - Learn more about Koushil');
       addLog('output', '  projects  - View featured projects');
       addLog('output', '  skills    - List technical expertise');
+      addLog('output', '  contact   - Get contact details');
       addLog('output', '  clear     - Clear the terminal screen');
       addLog('output', '  whoami    - Display current user');
       addLog('output', '  date      - Display current date');
@@ -34,6 +35,11 @@ export default function TerminalApp() {
     about: () => addLog('output', 'Koushil Varma - A passionate developer building the next generation of web apps.'),
     projects: () => addLog('output', 'Loading projects... check out the Projects icon in the dock for a better view!'),
     skills: () => addLog('output', 'React, TypeScript, Node.js, Docker, Kubernetes, AWS, and more.'),
+    contact: () => {
+      addLog('output', 'Email: kakarlapudikoushilvarma@gmail.com');
+      addLog('output', 'LinkedIn: linkedin.com/in/koushil-varma-k-83b3b4260/');
+      addLog('output', 'GitHub: github.com/koushilvarma');
+    },
     clear: () => setHistory([]),
     whoami: () => addLog('output', 'visitor@koushilvarma.com'),
     date: () => addLog('output', new Date().toString()),
