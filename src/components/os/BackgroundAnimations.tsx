@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
-  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText 
+  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText, 
+  Gamepad2, Music, Heart, Camera, Github, Linkedin, MessageSquare, Settings, Search, Layout,
+  Smartphone, Monitor, Rocket, Zap, Anchor, Coffee
 } from 'lucide-react';
 
 const shapes = [
@@ -24,6 +26,20 @@ const shapes = [
   { id: 16, type: 'icon', icon: Activity, label: 'Monitor', color: 'text-rose-500', size: 50, startX: 10, startY: 40 },
   { id: 17, type: 'icon', icon: HardDrive, label: 'Drive', color: 'text-slate-500', size: 55, startX: 80, startY: 90 },
   { id: 18, type: 'icon', icon: FileText, label: 'Resume', color: 'text-yellow-400', size: 60, startX: 40, startY: 80 },
+  { id: 19, type: 'icon', icon: Gamepad2, label: 'Gaming', color: 'text-purple-400', size: 50, startX: 30, startY: 85 },
+  { id: 20, type: 'icon', icon: Music, label: 'Spotify', color: 'text-pink-400', size: 45, startX: 65, startY: 15 },
+  { id: 21, type: 'icon', icon: Heart, label: 'Love', color: 'text-red-400', size: 40, startX: 95, startY: 25 },
+  { id: 22, type: 'icon', icon: Camera, label: 'Capture', color: 'text-yellow-400', size: 55, startX: 5, startY: 10 },
+  { id: 23, type: 'icon', icon: Github, label: 'Github', color: 'text-gray-300', size: 50, startX: 55, startY: 5 },
+  { id: 24, type: 'icon', icon: Linkedin, label: 'Social', color: 'text-blue-600', size: 45, startX: 15, startY: 95 },
+  { id: 25, type: 'icon', icon: MessageSquare, label: 'Chat', color: 'text-green-400', size: 50, startX: 85, startY: 35 },
+  { id: 26, type: 'icon', icon: Settings, label: 'Config', color: 'text-gray-400', size: 40, startX: 45, startY: 95 },
+  { id: 27, type: 'icon', icon: Search, label: 'Browse', color: 'text-blue-300', size: 45, startX: 92, startY: 55 },
+  { id: 28, type: 'icon', icon: Layout, label: 'Design', color: 'text-indigo-400', size: 50, startX: 35, startY: 50 },
+  { id: 29, type: 'icon', icon: Smartphone, label: 'Mobile', color: 'text-slate-400', size: 45, startX: 60, startY: 75 },
+  { id: 30, type: 'icon', icon: Rocket, label: 'Launch', color: 'text-orange-400', size: 60, startX: 70, startY: 60 },
+  { id: 31, type: 'icon', icon: Zap, label: 'Speed', color: 'text-yellow-300', size: 40, startX: 10, startY: 60 },
+  { id: 32, type: 'icon', icon: Coffee, label: 'Coffee', color: 'text-amber-600', size: 45, startX: 80, startY: 5 },
 ];
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {
