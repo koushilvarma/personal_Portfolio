@@ -10,6 +10,7 @@ export default function MenuBar() {
   const toggleCommandPalette = useStore((state) => state.toggleCommandPalette);
   const powerOff = useStore((state) => state.powerOff);
   const sleep = useStore((state) => state.sleep);
+  const restart = useStore((state) => state.restart);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -23,7 +24,7 @@ export default function MenuBar() {
     } else if (action === 'Sleep') {
       sleep();
     } else if (action === 'Restart') {
-      window.location.reload();
+      restart();
     }
   };
 

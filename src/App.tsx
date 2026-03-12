@@ -3,7 +3,7 @@ import Dock from './components/os/Dock';
 import Window from './components/os/Window';
 import CommandPalette from './components/os/CommandPalette';
 import BackgroundAnimations from './components/os/BackgroundAnimations';
-import { Monitor } from 'lucide-react';
+import { Monitor, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AboutApp from './components/apps/AboutApp';
@@ -21,7 +21,7 @@ import DocsApp from './components/apps/DocsApp';
 import { useStore } from './store/osStore';
 
 function App() {
-  const { isCommandPaletteOpen, setCommandPalette, windows, isPoweredOff, isSleeping } = useStore();
+  const { isCommandPaletteOpen, setCommandPalette, windows, isPoweredOff, isSleeping, isRestarting } = useStore();
 
   const isAnyWindowOpen = Object.values(windows).some(w => w.isOpen && !w.isMinimized);
 
@@ -107,8 +107,27 @@ function App() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
 
+        {isRestarting && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-os-window z-[9999] flex items-center justify-center cursor-wait"
+          >
+            <div className="flex flex-col items-center gap-6">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="text-os-border"
+              >
+                <Loader2 size={60} strokeWidth={1.5} />
+              </motion.div>
+              <span className="font-mono font-bold text-os-border tracking-widest animate-pulse uppercase">Restarting System...</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="fixed bottom-4 left-4 z-0 pointer-events-none select-none">
         <p className="text-[10px] md:text-xs font-mono font-bold text-os-border/20 uppercase tracking-[0.2em]">
           All rights reserved to Koushil Varma ©2026

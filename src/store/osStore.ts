@@ -20,6 +20,7 @@ interface OSStore {
   isCommandPaletteOpen: boolean;
   isPoweredOff: boolean;
   isSleeping: boolean;
+  isRestarting: boolean;
 
   // Window Actions
   openWindow: (id: WindowId) => void;
@@ -32,6 +33,7 @@ interface OSStore {
   setCommandPalette: (isOpen: boolean) => void;
   powerOff: () => void;
   sleep: () => void;
+  restart: () => void;
 }
 
 const initialWindows: Record<WindowId, WindowState> = {
@@ -164,6 +166,7 @@ export const useStore = create<OSStore>((set) => ({
   isCommandPaletteOpen: false,
   isPoweredOff: false,
   isSleeping: false,
+  isRestarting: false,
 
   openWindow: (id) =>
     set((state) => {
@@ -223,6 +226,13 @@ export const useStore = create<OSStore>((set) => ({
 
   sleep: () => {
     set({ isSleeping: true });
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  },
+
+  restart: () => {
+    set({ isRestarting: true });
     setTimeout(() => {
       window.location.reload();
     }, 5000);
