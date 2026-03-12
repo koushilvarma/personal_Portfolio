@@ -25,7 +25,9 @@ export default function MenuBar() {
     } else if (action === 'Restart') {
       window.location.reload();
     }
-  };  const timeString = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
+  const timeString = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const dateString = time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
 
   return (
