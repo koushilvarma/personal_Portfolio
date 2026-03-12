@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
-  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive 
+  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle 
 } from 'lucide-react';
 
 const shapes = [
@@ -35,26 +35,33 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
     <div 
       className={`absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-20'}`}
     >
-      {/* Subtle Background Branding */}
+      {/* Central OS Identity Element */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ 
-          opacity: 0.07, 
-          y: [0, -15, 0],
+          opacity: 1,
+          scale: 1,
+          y: [0, -10, 0],
         }}
         transition={{ 
-          opacity: { duration: 2 },
+          opacity: { duration: 1.5 },
           y: {
-            duration: 8,
+            duration: 6,
             repeat: Infinity,
             ease: "easeInOut"
           }
         }}
         className="absolute inset-0 flex items-center justify-center select-none"
       >
-        <h1 className="text-[12vw] md:text-[18vw] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-os-border via-os-border/50 to-transparent opacity-100">
-          Koushil Varma
-        </h1>
+        <div className="flex flex-col items-center gap-4 opacity-15 hover:opacity-30 transition-opacity duration-500">
+          <div className="w-24 h-24 md:w-32 md:h-32 bg-white border-4 border-os-border shadow-brutal-md flex items-center justify-center">
+            <UserCircle size={64} className="text-os-border md:hidden" strokeWidth={1.5} />
+            <UserCircle size={80} className="text-os-border hidden md:block" strokeWidth={1.5} />
+          </div>
+          <div className="px-4 py-1 bg-os-border text-white text-lg md:text-2xl font-bold font-mono tracking-tight shadow-brutal-sm">
+            Koushil Varma
+          </div>
+        </div>
       </motion.div>
       {shapes.map((shape) => (
         <motion.div
