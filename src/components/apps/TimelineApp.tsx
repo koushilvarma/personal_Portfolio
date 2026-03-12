@@ -65,13 +65,8 @@ export default function TimelineApp() {
   };
 
   return (
-    <div className="bg-black text-white p-4 font-mono text-xs md:text-sm h-full flex flex-col">
-      <div className="border-b-2 border-gray-800 pb-2 mb-4 flex justify-between items-center text-gray-500">
-        <span>tail -f /var/log/career.log</span>
-        <span className="animate-pulse">_</span>
-      </div>
-
-      <div ref={scrollRef} className="flex-1 overflow-y-auto brutal-scrollbar pr-2 space-y-2">
+    <div className="bg-black text-white p-6 font-mono text-xs md:text-sm h-full flex flex-col">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto brutal-scrollbar pr-2 space-y-4">
         {displayedLogs.map((log, i) => (
           <div key={i} className="flex flex-col sm:flex-row gap-2 sm:gap-4 hover:bg-green-900/30 p-1 transition-colors border-l-2 border-transparent hover:border-green-500">
             <span className="text-gray-500 whitespace-nowrap opacity-70">
@@ -80,15 +75,9 @@ export default function TimelineApp() {
             <span className={`px-1 py-0.5 font-bold text-[10px] sm:text-xs min-w-[60px] text-center ${getLevelColor(log.level)}`}>
               {log.level}
             </span>
-            <span className="text-green-300 break-words">{log.msg}</span>
+            <span className="text-green-300 break-words flex-1 leading-relaxed">{log.msg}</span>
           </div>
         ))}
-        {displayedLogs.length === logs.length && (
-          <div className="mt-4 text-green-600 flex gap-2 pt-2 border-t border-green-900/50">
-            <span>user@localhost:~$</span>
-            <span className="animate-pulse w-2 h-4 bg-green-500 inline-block translate-y-[2px]" />
-          </div>
-        )}
       </div>
     </div>
   );
