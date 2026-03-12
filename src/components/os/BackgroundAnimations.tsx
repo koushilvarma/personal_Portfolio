@@ -35,6 +35,27 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
     <div 
       className={`absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-20'}`}
     >
+      {/* Subtle Background Branding */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: 0.07, 
+          y: [0, -15, 0],
+        }}
+        transition={{ 
+          opacity: { duration: 2 },
+          y: {
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }
+        }}
+        className="absolute inset-0 flex items-center justify-center select-none"
+      >
+        <h1 className="text-[12vw] md:text-[18vw] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-os-border via-os-border/50 to-transparent opacity-100">
+          Koushil Varma
+        </h1>
+      </motion.div>
       {shapes.map((shape) => (
         <motion.div
           key={shape.id}
