@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Smartphone, Rocket, Zap, Coffee, Palette, Calculator, Terminal
+  Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
+  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText, 
+  Gamepad2, Music, Heart, Camera, Github, Linkedin, MessageSquare, Settings, Search, Layout,
+  Smartphone, Rocket, Zap, Coffee, Palette, Calculator
 } from 'lucide-react';
 
 const shapes = [
