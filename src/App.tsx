@@ -3,6 +3,7 @@ import Dock from './components/os/Dock';
 import Window from './components/os/Window';
 import CommandPalette from './components/os/CommandPalette';
 import BackgroundAnimations from './components/os/BackgroundAnimations';
+import { Monitor } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AboutApp from './components/apps/AboutApp';
@@ -20,7 +21,7 @@ import DocsApp from './components/apps/DocsApp';
 import { useStore } from './store/osStore';
 
 function App() {
-  const { isCommandPaletteOpen, setCommandPalette, windows, isPoweredOff } = useStore();
+  const { isCommandPaletteOpen, setCommandPalette, windows, isPoweredOff, isSleeping } = useStore();
 
   const isAnyWindowOpen = Object.values(windows).some(w => w.isOpen && !w.isMinimized);
 
@@ -68,19 +69,7 @@ function App() {
       <Dock />
       <CommandPalette />
 
-      <AnimatePresence>
-        {isPoweredOff && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed inset-0 bg-black z-[9999] flex items-center justify-center cursor-none"
-          >
-            <div className="w-1 h-1 bg-white/20 rounded-full animate-pulse" />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* Subtle Copyright Footer */}
       <div className="fixed bottom-4 left-4 z-0 pointer-events-none select-none">
         <p className="text-[10px] md:text-xs font-mono font-bold text-os-border/20 uppercase tracking-[0.2em]">
           All rights reserved to Koushil Varma ©2026

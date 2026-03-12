@@ -6,8 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function MenuBar() {
   const [time, setTime] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const toggleCommandPalette = useStore((state) => state.toggleCommandPalette);
   const powerOff = useStore((state) => state.powerOff);
+  const sleep = useStore((state) => state.sleep);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -18,12 +20,12 @@ export default function MenuBar() {
     setIsMenuOpen(false);
     if (action === 'Power Off') {
       powerOff();
+    } else if (action === 'Sleep') {
+      sleep();
     } else if (action === 'Restart') {
       window.location.reload();
     }
-  };
-
-  const timeString = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };  const timeString = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const dateString = time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
 
   return (
