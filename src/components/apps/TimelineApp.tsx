@@ -36,11 +36,11 @@ export default function TimelineApp() {
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case 'INFO': return 'text-gray-700 bg-gray-200';
-      case 'SUCCESS': return 'text-white bg-os-border';
-      case 'WARN': return 'text-gray-800 bg-gray-300';
-      case 'ERROR': return 'text-white bg-gray-600';
-      default: return 'text-gray-400';
+      case 'INFO': return 'text-blue-600 bg-blue-100';
+      case 'SUCCESS': return 'text-green-700 bg-green-100';
+      case 'WARN': return 'text-yellow-700 bg-yellow-100';
+      case 'ERROR': return 'text-red-600 bg-red-100';
+      default: return 'text-gray-600';
     }
   };
 
@@ -53,20 +53,20 @@ export default function TimelineApp() {
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto brutal-scrollbar pr-2 space-y-2">
         {displayedLogs.map((log, i) => (
-          <div key={i} className="flex flex-col sm:flex-row gap-2 sm:gap-4 hover:bg-white/5 p-1 transition-colors">
-            <span className="text-gray-600 whitespace-nowrap opacity-70">
+          <div key={i} className="flex flex-col sm:flex-row gap-2 sm:gap-4 hover:bg-green-900/30 p-1 transition-colors">
+            <span className="text-gray-500 whitespace-nowrap opacity-70">
               {new Date(log.time).toISOString().replace('T', ' ').substr(0, 19)}
             </span>
             <span className={`px-1 py-0.5 font-bold text-[10px] sm:text-xs min-w-[60px] text-center ${getLevelColor(log.level)}`}>
               {log.level}
             </span>
-            <span className="text-gray-300 break-words">{log.msg}</span>
+            <span className="text-green-300 break-words">{log.msg}</span>
           </div>
         ))}
         {displayedLogs.length === logs.length && (
-          <div className="mt-4 text-gray-500 flex gap-2 pt-2 border-t border-gray-800">
+          <div className="mt-4 text-green-600 flex gap-2 pt-2 border-t border-green-900/50">
             <span>user@localhost:~$</span>
-            <span className="animate-pulse w-2 h-4 bg-white inline-block translate-y-[2px]" />
+            <span className="animate-pulse w-2 h-4 bg-green-500 inline-block translate-y-[2px]" />
           </div>
         )}
       </div>

@@ -3,44 +3,44 @@
 const skillsLayout = [
   {
     category: 'Container & Orchestration',
-    color: 'bg-gray-50',
+    color: 'bg-blue-200',
     items: ['Docker', 'Kubernetes', 'Helm', 'Docker Compose', 'Podman']
   },
   {
     category: 'Cloud Providers',
-    color: 'bg-gray-100',
+    color: 'bg-orange-200',
     items: ['AWS', 'GCP', 'Cloudflare', 'DigitalOcean']
   },
   {
     category: 'CI/CD Pipelines',
-    color: 'bg-gray-50',
+    color: 'bg-green-200',
     items: ['GitHub Actions', 'GitLab CI', 'ArgoCD', 'Jenkins']
   },
   {
     category: 'Infrastructure as Code',
-    color: 'bg-gray-100',
+    color: 'bg-yellow-200',
     items: ['Terraform', 'Ansible', 'Packer', 'CloudFormation']
   },
   {
     category: 'Observability',
-    color: 'bg-gray-50',
+    color: 'bg-purple-200',
     items: ['Prometheus', 'Grafana', 'Datadog', 'ELK Stack', 'OpenTelemetry']
   },
   {
     category: 'Languages & Scripting',
-    color: 'bg-gray-100',
+    color: 'bg-pink-200',
     items: ['Python', 'Bash / Shell', 'Go', 'JavaScript', 'HCL', 'YAML']
   },
   {
     category: 'Full Stack & Web',
-    color: 'bg-white',
+    color: 'bg-teal-200',
     items: ['Full Stack Development', 'React', 'TypeScript', 'Node.js', 'Tailwind CSS']
   }
 ];
 
 export default function SkillsApp() {
   return (
-    <div className="p-4 md:p-6 bg-os-main min-h-full">
+    <div className="p-4 md:p-6 bg-[#f0ede8] min-h-full">
       <div className="mb-6 flex items-center justify-between border-b-3 border-os-border pb-4">
         <h2 className="text-3xl font-black uppercase tracking-tighter">Stack_Mapping</h2>
         <div className="bg-os-border text-white px-2 py-1 font-mono text-xs font-bold">

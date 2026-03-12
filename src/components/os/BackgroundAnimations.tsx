@@ -61,20 +61,20 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
             }}
           >
             {shape.type === 'square' && (
-              <div className="w-full h-full bg-gray-200 border-4 border-os-border shadow-brutal-md" />
+              <div className="w-full h-full bg-blue-400 border-4 border-os-border shadow-brutal-md" />
             )}
             {shape.type === 'circle' && (
-              <div className="w-full h-full bg-gray-300 border-4 border-os-border rounded-full shadow-brutal-md" />
+              <div className="w-full h-full bg-green-400 border-4 border-os-border rounded-full shadow-brutal-md" />
             )}
             {shape.type === 'star' && (
-              <div className="font-bold text-6xl text-gray-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
+              <div className="font-bold text-6xl text-yellow-400 drop-shadow-[4px_4px_0_rgba(17,17,17,1)] select-none" style={{ WebkitTextStroke: '3px #111' }}>
                 *
               </div>
             )}
             {shape.type === 'icon' && shape.icon && (
               <shape.icon 
                 strokeWidth={2.5} 
-                className="w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] text-gray-600 select-none" 
+                className={`w-full h-full drop-shadow-[4px_4px_0_rgba(17,17,17,1)] ${shape.color} select-none`} 
               />
             )}
           </motion.div>

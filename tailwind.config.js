@@ -7,12 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'os-main': '#FFFFFF',
-        'os-secondary': '#E0E0E0',
+        'os-bg-yellow': '#F5E642',
+        'os-bg-white': '#F0EDE8',
         'os-window': '#FFFFFF',
         'os-border': '#111111',
-        // Fallback to prevent crash while transitioning
-        'os-bg-yellow': '#FFFFFF', 
       },
       fontFamily: {
         sans: ['"Space Grotesk"', 'sans-serif'],
