@@ -53,7 +53,7 @@ export default function ProjectsApp() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
-    <div className="flex h-full flex-col md:flex-row bg-os-bg-main">
+    <div className="flex h-full flex-col md:flex-row bg-os-main">
       {/* Sidebar: File Explorer */}
       <div className="w-full md:w-1/3 border-b-3 md:border-b-0 md:border-r-3 border-os-border flex flex-col bg-white">
         <div className="p-2 border-b-3 border-os-border font-bold text-xs uppercase bg-gray-200">

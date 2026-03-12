@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div 
-      className="w-screen h-screen overflow-hidden bg-os-bg-yellow bg-[radial-gradient(#dbc516_1px,transparent_1px)] [background-size:20px_20px] relative font-sans"
+      className="w-screen h-screen overflow-hidden bg-os-main bg-[radial-gradient(#e0e0e0_1px,transparent_1px)] [background-size:20px_20px] relative font-sans"
       onClick={() => isCommandPaletteOpen && setCommandPalette(false)}
     >
       <MenuBar />

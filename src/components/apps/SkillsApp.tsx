@@ -40,7 +40,7 @@ const skillsLayout = [
 
 export default function SkillsApp() {
   return (
-    <div className="p-4 md:p-6 bg-os-bg-main min-h-full">
+    <div className="p-4 md:p-6 bg-os-main min-h-full">
       <div className="mb-6 flex items-center justify-between border-b-3 border-os-border pb-4">
         <h2 className="text-3xl font-black uppercase tracking-tighter">Stack_Mapping</h2>
         <div className="bg-os-border text-white px-2 py-1 font-mono text-xs font-bold">
