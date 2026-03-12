@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' | 'resume' | 'paint' | 'calculator' | 'terminal';
+export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' | 'resume' | 'paint' | 'calculator' | 'terminal' | 'music';
 
 interface WindowState {
   id: WindowId;
@@ -129,6 +129,17 @@ const initialWindows: Record<WindowId, WindowState> = {
     height: 400,
     defaultX: 150,
     defaultY: 200,
+  },
+  music: {
+    id: 'music',
+    title: 'Music Player',
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    width: 600,
+    height: 600,
+    defaultX: 200,
+    defaultY: 50,
   },
 };
 
