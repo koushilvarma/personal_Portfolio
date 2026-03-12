@@ -66,6 +66,13 @@ function App() {
 
       <Dock />
       <CommandPalette />
+
+      {/* Subtle Copyright Footer */}
+      <div className="fixed bottom-4 left-4 z-0 pointer-events-none select-none">
+        <p className="text-[10px] md:text-xs font-mono font-bold text-os-border/20 uppercase tracking-[0.2em]">
+          All rights reserved to Koushil Varma ©2026
+        </p>
+      </div>
     </div>
   );
 }
