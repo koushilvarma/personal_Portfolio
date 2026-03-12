@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
-  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText, 
-  Gamepad2, Music, Heart, Camera, Github, Linkedin, MessageSquare, Settings, Search, Layout,
   Smartphone, Rocket, Zap, Coffee, Palette, Calculator, Terminal
 } from 'lucide-react';
 

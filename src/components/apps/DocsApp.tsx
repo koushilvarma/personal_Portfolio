@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, 
-  Save, Download, FileText, Share2, Printer
+  Save, Share2, Printer
 } from 'lucide-react';
 
 export default function DocsApp() {
-  const [content, setContent] = useState(
+  const [content] = useState(
     "Dear Hiring Manager,\n\nI am writing to express my strong interest in the Platform Engineering position. With my background in CSE and my experience with DevOps and cloud-native architectures, I am confident that I would be a valuable addition to your team...\n\nSincerely,\nKoushil Varma"
   );
 
