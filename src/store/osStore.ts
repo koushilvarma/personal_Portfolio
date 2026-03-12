@@ -218,13 +218,13 @@ export const useStore = create<OSStore>((set) => ({
     set({ isPoweredOff: true });
     setTimeout(() => {
       window.location.reload();
-    }, 10000);
+    }, 5000);
   },
 
   sleep: () => {
     set({ isSleeping: true });
     setTimeout(() => {
       window.location.reload();
-    }, 10000);
+    }, 5000);
   },
 }));
