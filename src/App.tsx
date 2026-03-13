@@ -73,7 +73,7 @@ function App() {
             <div 
               key={app.id}
               className="group pointer-events-auto flex flex-col items-center gap-1 cursor-pointer"
-              onDoubleClick={() => openWindow(app.id)}
+              onClick={() => openWindow(app.id)}
               onContextMenu={(e) => {
                 e.preventDefault();
                 if (app.id !== 'finder' && confirm(`Move ${app.label} to Trash?`)) moveToTrash(app.id);
