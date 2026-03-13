@@ -58,9 +58,19 @@ const shapes = [
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   if (!mounted) return null;
+
+  const activeShapes = isMobile ? shapes.slice(0, 12) : shapes;
 
   return (
     <div 
@@ -94,7 +104,7 @@ export default function BackgroundAnimations({ isActive }: { isActive: boolean }
           </div>
         </div>
       </motion.div>
-      {shapes.map((shape) => (
+      {activeShapes.map((shape) => (
         <motion.div
           key={shape.id}
           drag
