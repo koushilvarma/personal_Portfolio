@@ -3,7 +3,7 @@ import Dock from './components/os/Dock';
 import Window from './components/os/Window';
 import CommandPalette from './components/os/CommandPalette';
 import BackgroundAnimations from './components/os/BackgroundAnimations';
-import { Monitor, Loader2, UserCircle, FolderGit2, FileText, Gamepad2, Trash2 } from 'lucide-react';
+import { Monitor, Loader2, UserCircle, FolderGit2, FileText, Gamepad2, Trash2, DownloadCloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AboutApp from './components/apps/AboutApp';
@@ -28,7 +28,7 @@ import RetroGameApp from './components/apps/RetroGameApp';
 import { useStore, type WindowId } from './store/osStore';
 
 function App() {
-  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting, theme, trashedApps, moveToTrash, openWindow } = useStore();
+  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting, isUpdating, theme, trashedApps, moveToTrash, openWindow } = useStore();
 
   const isAnyWindowOpen = Object.values(windows).some((w: any) => w.isOpen && !w.isMinimized);
 
@@ -171,6 +171,35 @@ function App() {
               </motion.div>
               <span className="font-mono font-bold text-os-border tracking-widest animate-pulse uppercase">Restarting System...</span>
             </div>
+          </motion.div>
+        )}
+
+        {isUpdating && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-os-window z-[9999] flex items-center justify-center cursor-wait flex-col gap-12"
+          >
+             <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="text-os-border flex flex-col items-center gap-6"
+              >
+                <DownloadCloud size={80} strokeWidth={1.5} />
+                <span className="font-mono font-bold tracking-widest uppercase text-xl animate-pulse">Installing Update...</span>
+             </motion.div>
+
+             <div className="w-64 h-8 bg-os-window border-4 border-os-border p-1 shadow-brutal-sm relative overflow-hidden">
+                <motion.div 
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 7.5, ease: "linear" }}
+                  className="h-full bg-os-bg-yellow border-r-2 border-os-border relative"
+                >
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')] opacity-30 mix-blend-overlay"></div>
+                </motion.div>
+             </div>
           </motion.div>
         )}
       </AnimatePresence>

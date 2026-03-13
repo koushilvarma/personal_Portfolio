@@ -2,7 +2,7 @@ import { useStore } from '../../store/osStore';
 import { Monitor, Layout, Zap } from 'lucide-react';
 
 export default function SystemSettingsApp() {
-  const { theme, setTheme } = useStore();
+  const { theme, setTheme, softwareUpdate } = useStore();
 
   const themes = [
     { id: 'yellow' as const, name: 'Neo Yellow', icon: Zap, color: 'bg-[#F5E642]' },
@@ -48,6 +48,22 @@ export default function SystemSettingsApp() {
               ONLINE
             </span>
           </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-bold text-lg mb-4 underline decoration-4 underline-offset-4">System Updates</h2>
+        <div className="p-4 border-3 border-os-border bg-os-window shadow-brutal-sm flex items-center justify-between">
+          <div>
+            <h3 className="font-bold text-sm">KV_OS v1.3.0 Available</h3>
+            <p className="text-[10px] opacity-60">Includes new UI animations and core optimizations.</p>
+          </div>
+          <button 
+            onClick={softwareUpdate}
+            className="px-4 py-2 bg-os-bg-yellow border-2 border-os-border font-bold text-xs uppercase tracking-wider shadow-brutal-active active:translate-y-0.5 active:translate-x-0.5 transition-transform"
+          >
+            Update Now
+          </button>
         </div>
       </section>
 

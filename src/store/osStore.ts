@@ -23,6 +23,7 @@ interface OSStore {
   isPoweredOff: boolean;
   isSleeping: boolean;
   isRestarting: boolean;
+  isUpdating: boolean;
   theme: ThemeId;
   trashedApps: Set<WindowId>;
 
@@ -38,6 +39,7 @@ interface OSStore {
   powerOff: () => void;
   sleep: () => void;
   restart: () => void;
+  softwareUpdate: () => void;
 
   // Theme & Trash Actions
   setTheme: (theme: ThemeId) => void;
@@ -253,6 +255,7 @@ export const useStore = create<OSStore>((set) => ({
   isPoweredOff: false,
   isSleeping: false,
   isRestarting: false,
+  isUpdating: false,
   theme: 'yellow',
   trashedApps: new Set(),
 
@@ -321,6 +324,13 @@ export const useStore = create<OSStore>((set) => ({
     setTimeout(() => {
       window.location.reload();
     }, 5000);
+  },
+
+  softwareUpdate: () => {
+    set({ isUpdating: true });
+    setTimeout(() => {
+      window.location.reload();
+    }, 8000); // 8 seconds for the update animation
   },
 
   setTheme: (theme) => set({ theme }),
