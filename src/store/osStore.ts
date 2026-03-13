@@ -325,10 +325,15 @@ export const useStore = create<OSStore>((set) => ({
   },
 
   restart: () => {
-    set({ isRestarting: true });
+    set({ isRestarting: true, isCommandPaletteOpen: false });
     setTimeout(() => {
-      window.location.reload();
-    }, 5000);
+      set({ 
+        isRestarting: false, 
+        bootState: 'booting',
+        windows: initialWindows, // Reset all windows on restart
+        trashedApps: new Set()   // Empty trash on restart
+      });
+    }, 3000); // 3 seconds of restart overlay before kicking into BIOS
   },
 
   softwareUpdate: () => {
