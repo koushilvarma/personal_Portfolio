@@ -3,6 +3,8 @@ import Dock from './components/os/Dock';
 import Window from './components/os/Window';
 import CommandPalette from './components/os/CommandPalette';
 import BackgroundAnimations from './components/os/BackgroundAnimations';
+import BootScreen from './components/os/BootScreen';
+import LockScreen from './components/os/LockScreen';
 import { Monitor, Loader2, UserCircle, FolderGit2, FileText, Gamepad2, Trash2, DownloadCloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -28,7 +30,7 @@ import RetroGameApp from './components/apps/RetroGameApp';
 import { useStore, type WindowId } from './store/osStore';
 
 function App() {
-  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting, isUpdating, theme, trashedApps, moveToTrash, openWindow } = useStore();
+  const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting, isUpdating, theme, trashedApps, moveToTrash, openWindow, bootState, setBootState } = useStore();
 
   const isAnyWindowOpen = Object.values(windows).some((w: any) => w.isOpen && !w.isMinimized);
 
@@ -41,6 +43,14 @@ function App() {
     { id: 'game', label: 'Snake_Game', icon: Gamepad2 },
     { id: 'finder', label: 'Trash', icon: Trash2 },
   ];
+
+  if (bootState === 'booting') {
+    return <BootScreen onComplete={() => setBootState('locked')} />;
+  }
+
+  if (bootState === 'locked') {
+    return <LockScreen onUnlock={() => setBootState('ready')} />;
+  }
 
   return (
     <div 

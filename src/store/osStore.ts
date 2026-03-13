@@ -4,6 +4,8 @@ export type WindowId = 'about' | 'skills' | 'projects' | 'timeline' | 'contact' 
 
 export type ThemeId = 'yellow' | 'dark' | 'classic';
 
+export type BootState = 'booting' | 'locked' | 'ready';
+
 interface WindowState {
   id: WindowId;
   title: string;
@@ -26,6 +28,7 @@ interface OSStore {
   isUpdating: boolean;
   theme: ThemeId;
   trashedApps: Set<WindowId>;
+  bootState: BootState;
 
   // Window Actions
   openWindow: (id: WindowId) => void;
@@ -45,6 +48,7 @@ interface OSStore {
   setTheme: (theme: ThemeId) => void;
   moveToTrash: (id: WindowId) => void;
   restoreFromTrash: (id: WindowId) => void;
+  setBootState: (state: BootState) => void;
 }
 
 const initialWindows: Record<WindowId, WindowState> = {
@@ -258,6 +262,7 @@ export const useStore = create<OSStore>((set) => ({
   isUpdating: false,
   theme: 'yellow',
   trashedApps: new Set(),
+  bootState: 'booting',
 
   openWindow: (id) =>
     set((state) => {
@@ -346,4 +351,6 @@ export const useStore = create<OSStore>((set) => ({
     newTrash.delete(id);
     return { trashedApps: newTrash };
   }),
+
+  setBootState: (bootState) => set({ bootState }),
 }));
