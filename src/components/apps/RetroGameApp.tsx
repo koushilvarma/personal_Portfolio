@@ -37,12 +37,14 @@ export default function RetroGameApp() {
       // Wall collision
       if (newHead.x < 0 || newHead.x >= GRID_SIZE || newHead.y < 0 || newHead.y >= GRID_SIZE) {
         setGameOver(true);
+        if (score > highScore) setHighScore(score);
         return;
       }
 
       // Self collision
       if (snake.some(s => s.x === newHead.x && s.y === newHead.y)) {
         setGameOver(true);
+        if (score > highScore) setHighScore(score);
         return;
       }
 

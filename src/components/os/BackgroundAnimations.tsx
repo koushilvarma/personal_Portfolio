@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Terminal, Code2, Database, Shield, Box, Server, GitBranch, 
-  Cpu, Globe, Wifi, Cloud, Layers, Activity, HardDrive, UserCircle, FileText, 
+  Cpu, Globe, Wifi, Cloud, Layers, HardDrive, UserCircle, FileText, 
   Gamepad2, Music, Heart, Camera, Github, Linkedin, MessageSquare, Settings, Search, Layout,
-  Smartphone, Rocket, Zap, Coffee, Palette, Calculator
+  Smartphone, Rocket, Zap, Coffee, Palette, Calculator, Mail, Share2, Anchor, Award, 
+  Battery, Bell, Bluetooth, Bookmark, Briefcase, CameraOff, Cast, Chrome
 } from 'lucide-react';
 
 const shapes = [
@@ -23,6 +24,36 @@ const shapes = [
   { id: 13, type: 'icon', icon: Zap, label: 'Speed', color: 'text-yellow-300', size: 40, startX: 10, startY: 60 },
   { id: 14, type: 'icon', icon: Palette, label: 'Paint', color: 'text-pink-400', size: 55, startX: 25, startY: 45 },
   { id: 15, type: 'icon', icon: Layout, label: 'Design', color: 'text-indigo-400', size: 50, startX: 35, startY: 50 },
+  { id: 16, type: 'icon', icon: Shield, label: 'Security', color: 'text-red-500', size: 50, startX: 60, startY: 90 },
+  { id: 17, type: 'icon', icon: Box, label: 'Package', color: 'text-teal-500', size: 45, startX: 50, startY: 65 },
+  { id: 18, type: 'icon', icon: GitBranch, label: 'Branch', color: 'text-orange-500', size: 40, startX: 40, startY: 10 },
+  { id: 19, type: 'icon', icon: Wifi, label: 'Connect', color: 'text-indigo-500', size: 40, startX: 30, startY: 30 },
+  { id: 20, type: 'icon', icon: Cloud, label: 'Cloud', color: 'text-sky-400', size: 65, startX: 70, startY: 5 },
+  { id: 21, type: 'icon', icon: Smartphone, label: 'Mobile', color: 'text-slate-400', size: 45, startX: 60, startY: 75 },
+  { id: 22, type: 'icon', icon: HardDrive, label: 'Drive', color: 'text-slate-500', size: 55, startX: 80, startY: 90 },
+  { id: 23, type: 'icon', icon: Coffee, label: 'Coffee', color: 'text-amber-600', size: 45, startX: 80, startY: 5 },
+  { id: 24, type: 'icon', icon: Search, label: 'Search', color: 'text-blue-300', size: 45, startX: 92, startY: 55 },
+  { id: 25, type: 'icon', icon: Layers, label: 'Stack', color: 'text-emerald-500', size: 45, startX: 20, startY: 10 },
+  { id: 26, type: 'icon', icon: Github, label: 'Code', color: 'text-gray-300', size: 50, startX: 55, startY: 5 },
+  { id: 27, type: 'icon', icon: Linkedin, label: 'Social', color: 'text-blue-600', size: 45, startX: 15, startY: 95 },
+  { id: 28, type: 'icon', icon: Settings, label: 'System', color: 'text-gray-400', size: 40, startX: 45, startY: 95 },
+  { id: 29, type: 'icon', icon: Calculator, label: 'Math', color: 'text-blue-400', size: 50, startX: 75, startY: 30 },
+  { id: 30, type: 'icon', icon: Heart, label: 'Health', color: 'text-red-400', size: 40, startX: 95, startY: 25 },
+  { id: 31, type: 'icon', icon: Camera, label: 'Video', color: 'text-yellow-400', size: 55, startX: 5, startY: 10 },
+  { id: 32, type: 'star', label: 'Star', size: 45, startX: 50, startY: 40 },
+  { id: 33, type: 'icon', icon: Music, label: 'Audio', color: 'text-pink-400', size: 45, startX: 65, startY: 15 },
+  { id: 34, type: 'icon', icon: Mail, label: 'Email', color: 'text-blue-400', size: 50, startX: 10, startY: 40 },
+  { id: 35, type: 'icon', icon: Share2, label: 'Share', color: 'text-green-500', size: 45, startX: 45, startY: 30 },
+  { id: 36, type: 'icon', icon: Anchor, label: 'Stable', color: 'text-slate-600', size: 55, startX: 85, startY: 20 },
+  { id: 37, type: 'icon', icon: Award, label: 'Goal', color: 'text-yellow-600', size: 50, startX: 5, startY: 50 },
+  { id: 38, type: 'icon', icon: Battery, label: 'Power', color: 'text-emerald-400', size: 45, startX: 95, startY: 80 },
+  { id: 39, type: 'icon', icon: Bell, label: 'Alert', color: 'text-red-400', size: 50, startX: 55, startY: 20 },
+  { id: 40, type: 'icon', icon: Bluetooth, label: 'Wireless', color: 'text-blue-600', size: 45, startX: 15, startY: 80 },
+  { id: 41, type: 'icon', icon: Bookmark, label: 'Saved', color: 'text-indigo-400', size: 55, startX: 65, startY: 90 },
+  { id: 42, type: 'icon', icon: Briefcase, label: 'Work', color: 'text-amber-800', size: 50, startX: 35, startY: 5 },
+  { id: 43, type: 'icon', icon: CameraOff, label: 'Privacy', color: 'text-rose-500', size: 45, startX: 90, startY: 40 },
+  { id: 44, type: 'icon', icon: Cast, label: 'Stream', color: 'text-sky-500', size: 60, startX: 25, startY: 60 },
+  { id: 45, type: 'icon', icon: Chrome, label: 'Web', color: 'text-red-400', size: 50, startX: 75, startY: 10 },
 ];
 
 export default function BackgroundAnimations({ isActive }: { isActive: boolean }) {

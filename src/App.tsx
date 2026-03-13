@@ -39,6 +39,7 @@ function App() {
     { id: 'projects', label: 'Projects', icon: FolderGit2 },
     { id: 'resume', label: 'Resume', icon: FileText },
     { id: 'game', label: 'Snake_Game', icon: Gamepad2 },
+    { id: 'finder', label: 'Trash', icon: Trash2 },
   ];
 
   return (
@@ -67,6 +68,7 @@ function App() {
 
         {/* The Windows (pointer events auto to allow interaction) */}
         <div className="flex-1 relative pointer-events-none p-8 z-10 flex flex-col items-start gap-8">
+          {/* Desktop Apps Area */}
           {desktopApps.map(app => !trashedApps.has(app.id) && (
             <div 
               key={app.id}
@@ -74,7 +76,7 @@ function App() {
               onDoubleClick={() => openWindow(app.id)}
               onContextMenu={(e) => {
                 e.preventDefault();
-                if (confirm(`Move ${app.label} to Trash?`)) moveToTrash(app.id);
+                if (app.id !== 'finder' && confirm(`Move ${app.label} to Trash?`)) moveToTrash(app.id);
               }}
             >
               <div className="bg-os-window border-3 border-os-border p-3 shadow-brutal-sm group-hover:-translate-y-1 transition-transform group-active:shadow-brutal-active">
@@ -85,19 +87,6 @@ function App() {
               </span>
             </div>
           ))}
-
-          {/* Desktop Trash Bin */}
-          <div className="absolute bottom-16 right-8 pointer-events-auto">
-            <div 
-              className="flex flex-col items-center gap-1 group cursor-pointer"
-              onDoubleClick={() => openWindow('finder')} // Finder can show trashed items
-            >
-              <div className="bg-os-window border-3 border-os-border p-3 shadow-brutal-sm group-hover:-translate-y-1 transition-transform">
-                <Trash2 size={32} className="text-os-border" />
-              </div>
-              <span className="font-mono text-[10px] font-bold bg-os-border text-white px-1 uppercase tracking-tighter shadow-black shadow-sm">Trash</span>
-            </div>
-          </div>
         </div>
 
         <div className="absolute inset-4 pointer-events-none z-20 flex items-center justify-center">
