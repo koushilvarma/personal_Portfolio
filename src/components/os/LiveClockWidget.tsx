@@ -12,11 +12,11 @@ export default function LiveClockWidget() {
   const dateString = time.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none opacity-40 mix-blend-overlay">
-      <h1 className="text-6xl md:text-8xl lg:text-9xl font-black font-mono tracking-tighter text-os-border drop-shadow-[4px_4px_0_rgba(255,255,255,0.5)] whitespace-nowrap">
+    <div className="absolute top-12 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none opacity-20">
+      <h1 className="text-6xl md:text-8xl lg:text-9xl font-black font-mono tracking-tighter text-os-border whitespace-nowrap">
         {timeString}
       </h1>
-      <p className="text-sm md:text-xl font-bold mt-2 tracking-widest uppercase bg-white/50 border-2 border-os-border/50 px-4 py-1 shadow-brutal-sm">
+      <p className="text-sm md:text-xl font-bold mt-2 tracking-widest uppercase text-os-border">
         {dateString}
       </p>
     </div>
