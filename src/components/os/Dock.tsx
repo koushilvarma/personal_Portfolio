@@ -31,7 +31,7 @@ export default function Dock() {
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
-      <div className="bg-os-window border-3 border-os-border p-2 shadow-brutal-md flex gap-2">
+      <div className="bg-os-window border-3 border-os-border p-2 shadow-brutal-md flex gap-2 max-w-[95vw] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {apps.map((app) => {
           const isOpen = windows[app.id].isOpen;
 

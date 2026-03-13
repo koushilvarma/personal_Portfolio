@@ -107,7 +107,7 @@ export default function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, scale: 0.95, y: -20, x: '-50%' }}
             transition={{ duration: 0.15 }}
-            className="fixed top-1/4 left-1/2 w-full max-w-xl bg-os-window border-3 border-os-border shadow-brutal-lg z-[100] overflow-hidden"
+            className="fixed top-1/4 left-1/2 w-[calc(100%-2rem)] max-w-xl bg-os-window border-3 border-os-border shadow-brutal-lg z-[100] overflow-hidden"
           >
             <div className="flex items-center px-4 py-3 border-b-3 border-os-border bg-yellow-100">
               <Search size={20} className="text-os-border mr-3" />

@@ -56,7 +56,7 @@ function App() {
       <main className="absolute inset-0 pt-8 pb-20 overflow-hidden pointer-events-none">
         
         {/* Decorative Desktop Elements */}
-        <div className="absolute top-20 right-20 w-64 bg-white border-3 border-os-border shadow-brutal-sm p-4 rotate-2 font-mono text-sm shadow-black pointer-events-none">
+        <div className="hidden lg:block absolute top-20 right-20 w-64 bg-white border-3 border-os-border shadow-brutal-sm p-4 rotate-2 font-mono text-sm shadow-black pointer-events-none">
           <div className="w-4 h-4 rounded-full bg-gray-400 absolute -top-2 left-1/2 -translate-x-1/2 border-2 border-os-border" />
           <strong>TODO:</strong>
           <ul className="list-disc pl-4 mt-2 space-y-1">
@@ -67,7 +67,7 @@ function App() {
         </div>
 
         {/* The Windows (pointer events auto to allow interaction) */}
-        <div className="flex-1 relative pointer-events-none p-8 z-10 flex flex-col items-start gap-8">
+        <div className="flex-1 relative pointer-events-none p-2 sm:p-8 z-10 flex flex-col items-start gap-4 sm:gap-8 pb-32 overflow-y-auto">
           {/* Desktop Apps Area */}
           {desktopApps.map(app => !trashedApps.has(app.id) && (
             <div 
@@ -89,7 +89,7 @@ function App() {
           ))}
         </div>
 
-        <div className="absolute inset-4 pointer-events-none z-20 flex items-center justify-center">
+        <div className="absolute inset-0 sm:inset-4 pointer-events-none z-20 flex items-center justify-center">
           <Window id="about"><AboutApp /></Window>
           <Window id="skills"><SkillsApp /></Window>
           <Window id="projects"><ProjectsApp /></Window>

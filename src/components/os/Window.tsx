@@ -17,6 +17,17 @@ export default function Window({ id, children }: WindowProps) {
   
   const [isMaximized, setIsMaximized] = useState(false);
   const [position, setPosition] = useState({ x: windowState.defaultX, y: windowState.defaultY });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // On mobile, force windows to be maximized
+  const effectiveMaximized = isMaximized || isMobile;
 
   // Handle z-index stacking effect correctly on mount
   useEffect(() => {
@@ -44,7 +55,7 @@ export default function Window({ id, children }: WindowProps) {
   return (
     <motion.div
       ref={windowRef}
-      drag={!isMaximized}
+      drag={!effectiveMaximized}
       dragControls={dragControls}
       dragListener={false}
       dragMomentum={false}
@@ -52,10 +63,10 @@ export default function Window({ id, children }: WindowProps) {
       animate={{ 
         scale: 1, 
         opacity: 1,
-        x: isMaximized ? 0 : position.x,
-        y: isMaximized ? 32 : position.y, // 32 is menu bar height
-        width: isMaximized ? '100vw' : windowState.width,
-        height: isMaximized ? 'calc(100vh - 32px - 80px)' : windowState.height, // 80px for dock approx padding
+        x: effectiveMaximized ? 0 : position.x,
+        y: effectiveMaximized ? 32 : position.y, // 32 is menu bar height
+        width: effectiveMaximized ? '100%' : windowState.width,
+        height: effectiveMaximized ? 'calc(100% - 32px)' : windowState.height, // 32px for menu bar/dock spacing
       }}
       exit={{ scale: 0.95, opacity: 0, y: 50 }}
       transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
@@ -64,7 +75,7 @@ export default function Window({ id, children }: WindowProps) {
       }}
       onMouseDown={() => focusWindow(id)}
       style={{ zIndex: windowState.zIndex }}
-      className={`absolute bg-os-window border-3 border-os-border flex flex-col shadow-brutal-lg pointer-events-auto ${isMaximized ? '' : 'resize overflow-hidden'}`}
+      className={`absolute bg-os-window border-3 border-os-border flex flex-col shadow-brutal-lg pointer-events-auto ${effectiveMaximized ? '' : 'resize overflow-hidden'}`}
     >
       {/* Title Bar */}
       <div 
@@ -107,7 +118,7 @@ export default function Window({ id, children }: WindowProps) {
       </div>
       
       {/* Corner Resizer Visual (Functional resize handled by CSS) */}
-      {!isMaximized && (
+      {!effectiveMaximized && (
         <div className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize pointer-events-none flex flex-col justify-end items-end p-0.5 gap-[2px]">
             <div className="w-[2px] h-[2px] bg-os-border" />
             <div className="flex gap-[2px]">
