@@ -8,6 +8,7 @@ import LockScreen from './components/os/LockScreen';
 import LiveClockWidget from './components/os/LiveClockWidget';
 import { Monitor, Loader2, UserCircle, FolderGit2, FileText, Gamepad2, Trash2, DownloadCloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
 
 import AboutApp from './components/apps/AboutApp';
 import SkillsApp from './components/apps/SkillsApp';
@@ -32,6 +33,7 @@ import { useStore, type WindowId } from './store/osStore';
 
 function App() {
   const { isCommandPaletteOpen, setCommandPalette, windows = {}, isPoweredOff, isSleeping, isRestarting, isUpdating, theme, trashedApps, moveToTrash, openWindow, bootState, setBootState } = useStore();
+  const constraintsRef = useRef(null);
 
   const isAnyWindowOpen = Object.values(windows).some((w: any) => w.isOpen && !w.isMinimized);
 
@@ -80,12 +82,18 @@ function App() {
         </div>
 
         {/* The Windows (pointer events auto to allow interaction) */}
-        <div className="flex-1 relative pointer-events-none p-2 sm:p-8 z-10 flex flex-col items-start gap-4 sm:gap-8 pb-32 overflow-y-auto">
+        <div ref={constraintsRef} className="flex-1 relative pointer-events-none p-2 sm:p-8 z-10 flex flex-col items-start gap-4 sm:gap-8 pb-32 overflow-y-auto">
           {/* Desktop Apps Area */}
           {desktopApps.map(app => !trashedApps.has(app.id) && (
-            <div 
+            <motion.div 
               key={app.id}
-              className="group pointer-events-auto flex flex-col items-center gap-1 cursor-pointer"
+              drag
+              dragConstraints={constraintsRef}
+              dragElastic={0.1}
+              dragMomentum={false}
+              className="group pointer-events-auto flex flex-col items-center gap-1 cursor-pointer absolute"
+              initial={{ x: 0, y: 0 }}
+              style={{ position: 'relative' }}
               onClick={() => openWindow(app.id)}
               onContextMenu={(e) => {
                 e.preventDefault();
@@ -98,7 +106,7 @@ function App() {
               <span className="font-mono text-[10px] font-bold bg-os-border text-white px-1 uppercase tracking-tighter">
                 {app.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 
