@@ -1,7 +1,8 @@
 import { useStore } from '../../store/osStore';
 import type { WindowId } from '../../store/osStore';
 import { UserCircle, Code2, FolderGit2, CalendarDays, Mail, FileText, Search, Settings, StickyNote, Activity, MessageSquare, Gamepad2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 const apps = [
   { id: 'about' as WindowId, label: 'About', icon: UserCircle, color: 'bg-blue-400' },
@@ -20,6 +21,7 @@ const apps = [
 
 export default function Dock() {
   const { windows, openWindow, focusWindow } = useStore();
+  const [hoveredId, setHoveredId] = useState<WindowId | null>(null);
 
   const handleAppClick = (id: WindowId) => {
     if (!windows[id].isOpen) {
@@ -36,24 +38,44 @@ export default function Dock() {
           const isOpen = windows[app.id].isOpen;
 
           return (
-            <div key={app.id} className="relative group">
+            <div
+              key={app.id}
+              className="relative"
+              onMouseEnter={() => setHoveredId(app.id)}
+              onMouseLeave={() => setHoveredId(null)}
+            >
+              {/* Animated Tooltip */}
+              <AnimatePresence>
+                {hoveredId === app.id && (
+                  <motion.div
+                    key="tooltip"
+                    initial={{ opacity: 0, y: 6, scale: 0.85 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.9 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                    className="absolute -top-12 left-1/2 -translate-x-1/2 pointer-events-none z-10"
+                  >
+                    <div className="bg-os-border text-white text-xs font-mono font-bold px-2.5 py-1 whitespace-nowrap shadow-brutal-sm relative">
+                      {app.label}
+                      {/* Caret arrow */}
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-os-border" />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <button
                 onClick={() => handleAppClick(app.id)}
                 className={`w-12 h-12 flex items-center justify-center border-3 border-os-border transition-transform active:translate-y-1 ${app.color} ${isOpen ? 'shadow-brutal-active translate-y-0.5' : 'shadow-brutal-sm hover:-translate-y-1'}`}
               >
                 <app.icon size={24} className="text-os-border" />
               </button>
-              
-              {/* Tooltip */}
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-os-window border-3 border-os-border px-2 py-1 font-mono text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-brutal-sm">
-                {app.label}
-              </div>
 
-              {/* Open Indicator */}
+              {/* Open Indicator dot */}
               {isOpen && (
-                <motion.div 
+                <motion.div
                   layoutId={`indicator-${app.id}`}
-                  className="absolute -bottom-1 w-1 h-1 bg-os-border left-1/2 -translate-x-1/2 rounded-full" 
+                  className="absolute -bottom-1 w-1 h-1 bg-os-border left-1/2 -translate-x-1/2 rounded-full"
                 />
               )}
             </div>
