@@ -35,13 +35,13 @@ export default function ContactApp() {
           <span className="text-[#858585] w-8 text-right pr-4 select-none pt-2">4</span>
           <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-2 pt-2">
             <div>
-              <span className="text-[#4fc1ff]">export</span> <span className="text-[#9cdcfe]">EMAIL</span><span className="text-[#d4d4d4]">=</span><span className="text-[#ce9178]">"koushil@example.com"</span>
+              <span className="text-[#4fc1ff]">export</span> <span className="text-[#9cdcfe]">EMAIL</span><span className="text-[#d4d4d4]">=</span><a href="mailto:kakarlapudikoushilvarma@gmail.com" className="text-[#ce9178] hover:underline hover:text-[#ff9d6c] transition-colors">"kakarlapudikoushilvarma@gmail.com"</a>
             </div>
             <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity translate-y-[-2px]">
-              <a href="mailto:koushil@example.com" className="bg-[#2d2d2d] hover:bg-[#3d3d3d] border border-[#404040] p-1 rounded text-xs flex items-center gap-1 transition-colors">
+              <a href="mailto:kakarlapudikoushilvarma@gmail.com" className="bg-[#2d2d2d] hover:bg-[#3d3d3d] border border-[#404040] p-1 rounded text-xs flex items-center gap-1 transition-colors">
                 <Mail size={12} /> Send
               </a>
-              <button onClick={() => copyToClipboard('koushil@example.com')} className="bg-[#2d2d2d] hover:bg-[#3d3d3d] border border-[#404040] p-1 rounded text-xs flex items-center gap-1 transition-colors">
+              <button onClick={() => copyToClipboard('kakarlapudikoushilvarma@gmail.com')} className="bg-[#2d2d2d] hover:bg-[#3d3d3d] border border-[#404040] p-1 rounded text-xs flex items-center gap-1 transition-colors">
                 <Copy size={12} /> Copy
               </button>
             </div>
@@ -68,10 +68,10 @@ export default function ContactApp() {
           <span className="text-[#858585] w-8 text-right pr-4 select-none pt-2">6</span>
           <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-2 pt-2">
             <div>
-              <span className="text-[#4fc1ff]">export</span> <span className="text-[#9cdcfe]">LINKEDIN</span><span className="text-[#d4d4d4]">=</span><span className="text-[#ce9178]">"linkedin.com/in/koushil"</span>
+              <span className="text-[#4fc1ff]">export</span> <span className="text-[#9cdcfe]">LINKEDIN</span><span className="text-[#d4d4d4]">=</span><a href="https://www.linkedin.com/in/koushil-varma-3973352b0/" target="_blank" rel="noopener noreferrer" className="text-[#ce9178] hover:underline hover:text-[#ff9d6c] transition-colors">"linkedin.com/in/koushil-varma-3973352b0"</a>
             </div>
             <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity translate-y-[-2px]">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-[#2d2d2d] hover:bg-[#3d3d3d] border border-[#404040] p-1 rounded text-xs flex items-center gap-1 transition-colors">
+              <a href="https://www.linkedin.com/in/koushil-varma-3973352b0/" target="_blank" rel="noopener noreferrer" className="bg-[#2d2d2d] hover:bg-[#3d3d3d] border border-[#404040] p-1 rounded text-xs flex items-center gap-1 transition-colors">
                 <Linkedin size={12} /> Open
               </a>
             </div>
